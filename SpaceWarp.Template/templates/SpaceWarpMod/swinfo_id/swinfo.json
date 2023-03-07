@@ -1,0 +1,21 @@
+{
+  "mod_id": "swinfo_id",
+  "author": "swinfo_author",
+  "name": "swinfo_name",
+  "description": "swinfo_description",
+  "source": "swinfo_source",
+  "version": "swinfo_version",
+  "dependencies": [
+    {
+      "id":  "SpaceWarp",
+      "version": {
+        "min": "0.4.0",
+        "max": "*"
+      }
+    }
+  ],
+  "ksp2_version": {
+    "min": "0.1.0",
+    "max": "*"
+  }
+}

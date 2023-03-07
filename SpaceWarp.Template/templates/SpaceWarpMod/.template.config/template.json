@@ -1,0 +1,90 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "munix",
+    "classifications": [
+        "SpaceWarp",
+        "SpaceWarp 0.4",
+        "KSP 2",
+        "Kerbal Space Program 2",
+        "Mod"
+    ],
+    "identity": "SpaceWarpMod",
+    "name": "SpaceWarp 0.4 Mod",
+    "shortName": "spacewarpmod",
+    "sourceName": "SpaceWarpMod",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "guids": [
+        "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC",
+        "9546D588-26B7-4CF5-AEF0-17676A5F1CE0"
+    ],
+    "symbols": {
+        "TargetFramework": {
+            "type": "parameter",
+            "description": "Target .NET version",
+            "datatype": "text",
+            "defaultValue": "netstandard2.0",
+            "replaces": "netstandard2.0"
+        },
+        "UnityVersion": {
+            "type": "parameter",
+            "description": "Target Unity version",
+            "datatype": "text",
+            "replaces": "2020.3.33",
+            "defaultValue": "2020.3.33"
+        },
+        "GUID": {
+            "type": "parameter",
+            "description": "SpaceWarp mod ID (mod folder name)",
+            "datatype": "text",
+            "replaces": "swinfo_id",
+            "fileRename": "swinfo_id",
+            "isRequired": true
+        },
+        "Author": {
+            "type": "parameter",
+            "description": "Mod author",
+            "datatype": "text",
+            "replaces": "swinfo_author",
+            "isRequired": true
+        },
+        "BepinexName": {
+            "type": "parameter",
+            "description": "Assembly name in the format com.github.author.mod_name",
+            "datatype": "text",
+            "replaces": "bepinex_assembly",
+            "isRequired": true
+        },
+        "ModName": {
+            "type": "parameter",
+            "description": "Mod name",
+            "datatype": "text",
+            "replaces": "swinfo_name",
+            "isRequired": true
+        },
+        "Description": {
+            "type": "parameter",
+            "description": "Mod description",
+            "datatype": "text",
+            "replaces": "swinfo_description",
+            "defaultValue": ""
+        },
+        "Source": {
+            "type": "parameter",
+            "description": "Mod source code repository",
+            "datatype": "text",
+            "replaces": "swinfo_source",
+            "defaultValue": ""
+        },
+        "Version": {
+            "type": "parameter",
+            "description": "Mod version",
+            "datatype": "text",
+            "replaces": "swinfo_version",
+            "defaultValue": "1.0.0"
+        }
+    }
+}
