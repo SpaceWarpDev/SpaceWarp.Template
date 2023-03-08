@@ -16,7 +16,7 @@ with the version number you downloaded:
 ## Creating a project
 There are two options how to generate a project using this template:
 
-### Command line
+### A) Command line
 1. Open `cmd` or `powershell` in the folder where you want your project created
 2. Replace the information in the following command with your own and run it:  
     ```console
@@ -27,7 +27,7 @@ There are two options how to generate a project using this template:
 
 3. Copy the file `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` into the `<project root>/external_dlls/` folder.
 
-### Visual Studio 2022
+### B) Visual Studio 2022
 1. Open Visual Studio
 2. Click on **Create a new project**
 3. Search for "SpaceWarp" in the search bar at the top, then select it and click **Next**
