@@ -12,7 +12,7 @@ you need to replace `install` with `--install`.**
 You can see the SDK version currently in use and all SDK versions
 installed by running `dotnet --info`.
 
-### NuGet.org
+### A. NuGet.org
 1. Run the following command in `cmd` or `powershell`:
     ```console
     dotnet new install SpaceWarp.Template
@@ -22,13 +22,19 @@ installed by running `dotnet --info`.
     dotnet new install SpaceWarp.Template::<version>
     ```
 
-### Manual
+### B. Manual
 1. Download the .nupkg file from **[GitHub releases](https://github.com/jan-bures/SpaceWarp.Template/releases)**
 2. Run the following command in `cmd` or `powershell` in the directory with the downloaded file after replacing `<version>`
 with the version number you downloaded:
     ```console
     dotnet new install SpaceWarp.Template.<version>.nupkg
     ```  
+
+### Versioning
+The template versions follow this convention: `x.y.z.version`, where `x.y.z` is the corresponding SpaceWarp version
+and `version` is the template version for that specific SpaceWarp release. For example, `0.4.0.1` is the first version
+of the template which supports SpaceWarp 0.4.0.
+
 ## Creating a project
 There are two options how to generate a project using this template:
 
