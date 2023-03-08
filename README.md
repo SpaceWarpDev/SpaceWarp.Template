@@ -7,8 +7,26 @@ This project serves as a SpaceWarp 0.4+ mod project template for the .NET CLI an
 - **.NET CLI** - included with .NET SDK installation
 
 ## Installation
+
+For .NET 7 SDK, you can use the commands as they are written below. **For .NET 6 SDK and older,
+you need to replace `install` with `--install`.**
+
+You can see the SDK version currently in use and all SDK versions
+installed by running `dotnet --info`.
+
+### NuGet.org
+1. Run the following command in `cmd` or `powershell`:
+    ```console
+    dotnet new install SpaceWarp.Template
+    ```
+    To install a specific version, you can add the version specifier to the command:
+    ```console
+    dotnet new install SpaceWarp.Template::<version>
+    ```
+
+### Manual
 1. Download the .nupkg file from **[GitHub releases](https://github.com/jan-bures/SpaceWarp.Template/releases)**
-2. Run the following command in cmd or PowerShell in the directory with the downloaded file after replacing `<version>`
+2. Run the following command in `cmd` or `powershell` in the directory with the downloaded file after replacing `<version>`
 with the version number you downloaded:
     ```console
     dotnet new install SpaceWarp.Template.<version>.nupkg
@@ -16,7 +34,7 @@ with the version number you downloaded:
 ## Creating a project
 There are two options how to generate a project using this template:
 
-### Command line
+### A. Command line
 1. Open `cmd` or `powershell` in the folder where you want your project created
 2. Replace the information in the following command with your own and run it:  
     ```console
@@ -27,12 +45,12 @@ There are two options how to generate a project using this template:
 
 3. Copy the file `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` into the `<project root>/external_dlls/` folder.
 
-### Visual Studio 2022
+### B. Visual Studio 2022
 1. Open Visual Studio
 2. Click on **Create a new project**
 3. Search for "SpaceWarp" in the search bar at the top, then select it and click **Next**
 ![Step 3](https://i.imgur.com/8lsJOpN.png)
-4. Fill out your project name and click **Next**
+4. Fill out your project name and click **Next**  
 ![Step 4](https://i.imgur.com/itHtr8H.png)
 5. Fill out the fields on the following page according to the following template.
 You can find more information about the parameters by hovering over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.  
