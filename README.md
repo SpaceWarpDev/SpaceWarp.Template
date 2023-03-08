@@ -54,7 +54,7 @@ to just zip the whole folder and upload it.
 
 When building the **Debug** target, the file `your_mod.pdb` is also copied next to `your_mod.dll`, so that you can
 easily copy the whole contents of the `Debug` folder into your KSP 2 root and start debugging your mod.
-To easily get started with breakpoint debugging your KSP 2 mods, see [this document](https://gist.github.com/gotmachine/d973adcb9ae413386291170fa346d043).
+To easily get started with breakpoint debugging your KSP 2 mods, see **[this document](https://gist.github.com/gotmachine/d973adcb9ae413386291170fa346d043)**.
 
 For Windows users, two batch scripts are included in the project root folder to provide an easy way to build the project
 by simply double-clicking one of the configurations: `build-debug.bat` and `build-release.bat`. Otherwise you can use
