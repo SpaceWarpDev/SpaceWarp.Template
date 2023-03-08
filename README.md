@@ -2,9 +2,7 @@
 This project serves as a SpaceWarp 0.4+ mod project template for the .NET CLI and Visual Studio.
 
 ## Requirements
-- **.NET SDK** - the overview of compatible .NET and .NET Framework versions can be found
-**[in this document](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-0#tabpanel_1_net-standard-2-0)**
-- **.NET CLI** - included with .NET SDK installation
+- **.NET SDK** - .NET Core 2.1+ or .NET 5+ is required for the .NET CLI tools
 
 ## Installation
 
