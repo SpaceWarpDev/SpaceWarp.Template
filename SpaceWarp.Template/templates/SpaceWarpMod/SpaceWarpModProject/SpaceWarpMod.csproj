@@ -29,7 +29,7 @@
         <PackageReference Include="BepInEx.Core" Version="5.*"/>
         <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
         <PackageReference Include="HarmonyX" Version="2.10.1"/>
-        <PackageReference Include="SpaceWarp" Version="0.4.0"/>
+        <PackageReference Include="SpaceWarp" Version="1.0.1"/>
         <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" IncludeAssets="compile"/>
     </ItemGroup>
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">

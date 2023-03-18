@@ -4,6 +4,8 @@ using KSP.UI.Binding;
 using SpaceWarp;
 using SpaceWarp.API.Assets;
 using SpaceWarp.API.Mods;
+using SpaceWarp.API.Game;
+using SpaceWarp.API.Game.Extensions;
 using SpaceWarp.API.UI;
 using SpaceWarp.API.UI.Appbar;
 using UnityEngine;
@@ -62,6 +64,18 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
 
         // Register all Harmony patches in the project
         Harmony.CreateAndPatchAll(typeof(SpaceWarpModPlugin).Assembly);
+
+        // Try to get the currently active vessel, set its throttle to 100% and toggle on the landing gear
+        try
+        {
+            var currentVessel = Vehicle.ActiveVesselVehicle;
+            if (currentVessel != null)
+            {
+                currentVessel.SetMainThrottle(1.0f);
+                currentVessel.SetGearState(true);
+            }
+        }
+        catch (Exception e) {}
         
         // Fetch a configuration value or create a default one if it does not exist
         var defaultValue = "my_value";

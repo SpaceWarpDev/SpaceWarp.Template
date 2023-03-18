@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <PackageType>Template</PackageType>
-        <PackageVersion>0.4.0.1</PackageVersion>
+        <PackageVersion>1.0.1.1</PackageVersion>
         <PackageId>SpaceWarp.Template</PackageId>
         <Title>SpaceWarp Mod Template</Title>
         <Authors>munix</Authors>

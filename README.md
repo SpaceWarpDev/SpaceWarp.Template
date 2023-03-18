@@ -1,5 +1,5 @@
 ﻿# SpaceWarp Template for .NET
-This project serves as a SpaceWarp 0.4+ mod project template for the .NET CLI and Visual Studio.
+This project serves as a SpaceWarp mod project template for the .NET CLI and Visual Studio.
 
 ## Requirements
 - **.NET SDK** - .NET Core 2.1+ or .NET 5+ is required for the .NET CLI tools
@@ -52,12 +52,12 @@ There are two options how to generate a project using this template:
 ### B. Visual Studio 2022
 1. Open Visual Studio
 2. Click on **Create a new project**
-3. Search for "SpaceWarp" in the search bar at the top, then select it and click **Next**
+3. Search for "SpaceWarp" in the search bar at the top, then select it and click **Next**  
 ![Step 3](https://i.imgur.com/8lsJOpN.png)
 4. Fill out your project name and click **Next**  
 ![Step 4](https://i.imgur.com/itHtr8H.png)
-5. Fill out the fields on the following page according to the following template.
-You can find more information about the parameters by hovering over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.  
+5. Fill out the fields on the following page. You can find more information about the parameters by hovering
+over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.  
 ![Step 5](https://i.imgur.com/g5mkGSp.png)  
 6. Click on **Create** and your project will be made.
 7. Copy the file `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` into the `<project root>/external_dlls/` folder.
@@ -86,17 +86,18 @@ your IDE or the .NET CLI to build the project.
 When creating your project in either the console or Visual Studio, you are provided a number of parameters.
 Here you can find an overview of all the parameters and their meaning:
 
-| Parameter                 | Console argument  | Short argument | Description                                                                                                  | Default value              |
-|---------------------------|-------------------|----------------|--------------------------------------------------------------------------------------------------------------|----------------------------|
-| Project name              | --name            | -n             | The name of your project in PascalCase                                                                       | `<current directory name>` |
-| TargetFramework           | --TargetFramework | -T             | .NET version to target, default value is set for KSP 2                                                       | `.netstandard2.0`          |
-| UnityVersion              | --UnityVersion    | -U             | Unity version to target, default value is set for KSP 2                                                      | `2020.3.33`                |
-| **GUID**<sup>*</sup>      | --GUID            | -G             | Your mod's ID which serves as the folder and .dll name of your built mod, used by SpaceWarp                  | -                          |
-| **Author**<sup>*</sup>    | --Author          | -A             | The name(s) of the mod's author(s)                                                                           | -                          |
-| **BepinexName**<sup>*</sup> | --BepinexName     | -B             | Your mod's ID in domain syntax, for example: com.github.author.modname, used by BepInEx                      | -                          |
-| **ModName**<sup>*</sup>   | --ModName         | -M             | The name of your mod                                                                                         | -                          |
-| Description               | --Description     | -D             | A short description of your mod                                                                              | `""` _(empty)_             |
-| Source                    | --Source          | -S             | The repository or download location of the mod's source code, for example: https://github.com/author/ModName | `""` _(empty)_             |
-| Version                   | --Version         | -V             | The mod's initial version                                                                                    | `1.0.0`                    |
+| Parameter                   | Console argument  | Short argument | Description                                                                                                                         | Default value              |
+|-----------------------------|-------------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| Project name                | --name            | -n             | The name of your project in PascalCase                                                                                              | `<current directory name>` |
+| TargetFramework             | --TargetFramework | -T             | .NET version to target, default value is set for KSP 2                                                                              | `.netstandard2.0`          |
+| UnityVersion                | --UnityVersion    | -U             | Unity version to target, default value is set for KSP 2                                                                             | `2020.3.33`                |
+| **GUID**<sup>*</sup>        | --GUID            | -G             | Your mod's ID which serves as the folder and .dll name of your built mod, used by SpaceWarp                                         | -                          |
+| **Author**<sup>*</sup>      | --Author          | -A             | The name(s) of the mod's author(s)                                                                                                  | -                          |
+| **BepinexName**<sup>*</sup> | --BepinexName     | -B             | Your mod's ID in domain syntax, for example: com.github.author.modname, used by BepInEx                                             | -                          |
+| **ModName**<sup>*</sup>     | --ModName         | -M             | The name of your mod                                                                                                                | -                          |
+| Description                 | --Description     | -D             | A short description of your mod                                                                                                     | `""` _(empty)_             |
+| Source                      | --Source          | -S             | The repository or download location of the mod's source code<br>(for example: https://github.com/author/mod)                        | `""` _(empty)_             |
+| Check Version               | --CheckVersion    | -C             | URL to up-to-date swinfo.json for version checking<br> (for example: https://raw.githubusercontent.com/author/mod/main/swinfo.json) | `""` _(empty)_             |
+| Version                     | --Version         | -V             | The mod's initial version                                                                                                           | `1.0.0`                    |
 
 Parameters marked with an asterisk (*) and in bold text are required and do not have default values.

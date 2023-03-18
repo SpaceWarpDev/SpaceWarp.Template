@@ -9,7 +9,7 @@
         "Mod"
     ],
     "identity": "SpaceWarpMod",
-    "name": "SpaceWarp 0.4 Mod",
+    "name": "SpaceWarp 1.0 Mod",
     "shortName": "spacewarpmod",
     "sourceName": "SpaceWarpMod",
     "preferNameDirectory": true,
@@ -77,6 +77,13 @@
             "description": "Mod source code repository",
             "datatype": "text",
             "replaces": "swinfo_source",
+            "defaultValue": ""
+        },
+        "CheckVersion": {
+            "type": "parameter",
+            "description": "URL to swinfo.json for version checking",
+            "datatype": "text",
+            "replaces": "swinfo_checkversion",
             "defaultValue": ""
         },
         "Version": {
