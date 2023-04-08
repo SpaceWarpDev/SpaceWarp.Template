@@ -2,12 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <PackageType>Template</PackageType>
-        <PackageVersion>1.0.1.2</PackageVersion>
+        <PackageVersion>1.1.1.1</PackageVersion>
         <PackageId>SpaceWarp.Template</PackageId>
         <Title>SpaceWarp Mod Template</Title>
         <Authors>munix</Authors>
         <Description>KSP 2 SpaceWarp mod template</Description>
-        <PackageTags>SpaceWarp;KSP;Mod;Template</PackageTags>
+        <PackageTags>spacewarp ksp ksp2 mod template</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <TargetFramework>netstandard2.0</TargetFramework>
         <PackageOutputPath>$(SolutionDir)nuget</PackageOutputPath>

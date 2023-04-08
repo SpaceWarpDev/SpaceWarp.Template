@@ -1,15 +1,14 @@
 {
-    "$schema": "http://json.schemastore.org/template",
+    "$schema": "https://json.schemastore.org/template",
     "author": "munix",
     "classifications": [
         "SpaceWarp",
-        "SpaceWarp 0.4",
         "KSP 2",
         "Kerbal Space Program 2",
         "Mod"
     ],
     "identity": "SpaceWarpMod",
-    "name": "SpaceWarp 1.0 Mod",
+    "name": "SpaceWarp Mod",
     "shortName": "spacewarpmod",
     "sourceName": "SpaceWarpMod",
     "preferNameDirectory": true,
