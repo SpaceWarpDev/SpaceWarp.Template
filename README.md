@@ -28,12 +28,22 @@ installed by running `dotnet --info`.
 with the version number you downloaded:
     ```console
     dotnet new install SpaceWarp.Template.<version>.nupkg
-    ```  
+    ```
 
 ### Versioning
 The template versions follow this convention: `x.y.z.version`, where `x.y.z` is the corresponding SpaceWarp version
 and `version` is the template version for that specific SpaceWarp release. For example, `0.4.0.1` is the first version
 of the template which supports SpaceWarp 0.4.0.
+
+## Updating
+To update the template in .NET 7 SDK, run the following command:
+```console
+dotnet new update
+```
+When using .NET 6 SDK or earlier, use the following command instead:
+```console
+dotnet new --update-apply
+```
 
 ## Creating a project
 There are two options how to generate a project using this template:
