@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <!-- Mod configuration -->
+    <PropertyGroup Label="Mod configuration">
+        <Product Label="Name of the mod">swinfo_name</Product>
+        <Authors Label="Author(s) of the mod">swinfo_author</Authors>
+        <Description Label="Description of the mod">swinfo_description</Description>
+        <RepositoryType Label="Type of source repository (git/svn)">git</RepositoryType>
+        <RepositoryUrl Label="Source repository URL">swinfo_source</RepositoryUrl>
+        <Version Label="Version of the mod">swinfo_version</Version>
+        <!-- If using GitHub and this template, VersionCheckUrl points to the raw .csproj file in your main branch,
+             e.g. https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj -->
+        <VersionCheckUrl Label="URL to up-to-date swinfo.json">swinfo_version_check</VersionCheckUrl>
+        <Ksp2VersionMin Label="Lowest supported version of KSP 2">0.1.2</Ksp2VersionMin>
+        <Ksp2VersionMax Label="Highest supported version of KSP 2">*</Ksp2VersionMax>
+    </PropertyGroup>
+
+    <!-- Build configuration -->
+    <PropertyGroup Label="Build configuration">
+        <!-- Set this to the path to your KSP 2 folder if you don't have the KSP2DIR environmental variable set -->
+        <KSP2DIR Condition="'$(KSP2DIR)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program 2</KSP2DIR>
+    </PropertyGroup>
+
+    <!-- Project references -->
+    <ItemGroup Label="DLL file references">
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(SolutionDir)external_dlls\Assembly-CSharp.dll</HintPath>
+            <Publicize>true</Publicize>
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup Label="NuGet package references">
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.0" PrivateAssets="all" />
+        <PackageReference Include="BepInEx.Core" Version="5.*" />
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+        <PackageReference Include="HarmonyX" Version="2.10.1" />
+        <PackageReference Include="SpaceWarp" Version="1.2.0" />
+        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" IncludeAssets="compile" />
+    </ItemGroup>
+</Project>

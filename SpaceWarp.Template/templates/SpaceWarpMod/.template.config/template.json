@@ -8,8 +8,8 @@
         "Mod"
     ],
     "identity": "SpaceWarpMod",
-    "name": "SpaceWarp Mod",
-    "shortName": "spacewarpmod",
+    "name": "SpaceWarp General Mod Project",
+    "shortName": "spacewarpmod-general",
     "sourceName": "SpaceWarpMod",
     "preferNameDirectory": true,
     "tags": {
@@ -21,48 +21,19 @@
         "9546D588-26B7-4CF5-AEF0-17676A5F1CE0"
     ],
     "symbols": {
-        "TargetFramework": {
-            "type": "parameter",
-            "description": "Target .NET version",
-            "datatype": "text",
-            "defaultValue": "netstandard2.0",
-            "replaces": "netstandard2.0"
-        },
-        "UnityVersion": {
-            "type": "parameter",
-            "description": "Target Unity version",
-            "datatype": "text",
-            "replaces": "2020.3.33",
-            "defaultValue": "2020.3.33"
-        },
-        "GUID": {
-            "type": "parameter",
-            "description": "SpaceWarp mod ID (mod folder name)",
-            "datatype": "text",
-            "replaces": "swinfo_id",
-            "fileRename": "swinfo_id",
-            "isRequired": true
-        },
-        "Author": {
-            "type": "parameter",
-            "description": "Mod author",
-            "datatype": "text",
-            "replaces": "swinfo_author",
-            "isRequired": true
-        },
-        "BepinexName": {
-            "type": "parameter",
-            "description": "Assembly name in the format com.github.author.mod_name",
-            "datatype": "text",
-            "replaces": "bepinex_assembly",
-            "isRequired": true
-        },
         "ModName": {
             "type": "parameter",
             "description": "Mod name",
             "datatype": "text",
             "replaces": "swinfo_name",
-            "isRequired": true
+            "defaultValue": ""
+        },
+        "Author": {
+            "type": "parameter",
+            "description": "Mod authors (comma-separated)",
+            "datatype": "text",
+            "replaces": "swinfo_author",
+            "defaultValue": ""
         },
         "Description": {
             "type": "parameter",
@@ -78,19 +49,19 @@
             "replaces": "swinfo_source",
             "defaultValue": ""
         },
-        "CheckVersion": {
-            "type": "parameter",
-            "description": "URL to swinfo.json for version checking",
-            "datatype": "text",
-            "replaces": "swinfo_checkversion",
-            "defaultValue": ""
-        },
         "Version": {
             "type": "parameter",
             "description": "Mod version",
             "datatype": "text",
             "replaces": "swinfo_version",
             "defaultValue": "1.0.0"
+        },
+        "CheckVersion": {
+            "type": "parameter",
+            "description": "URL to the raw .csproj file in your main branch to check for updates",
+            "datatype": "text",
+            "replaces": "swinfo_checkversion",
+            "defaultValue": ""
         }
     }
 }

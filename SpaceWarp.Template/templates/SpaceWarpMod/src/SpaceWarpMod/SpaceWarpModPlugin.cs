@@ -17,16 +17,22 @@ namespace SpaceWarpMod;
 public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
 {
     // These are useful in case some other mod wants to add a dependency to this one
+    // ReSharper disable UnusedMember.Global
     public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
     public const string ModName = MyPluginInfo.PLUGIN_NAME;
     public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
-    
+    // ReSharper restore UnusedMember.Global
+
+    // UI window state
     private bool _isWindowOpen;
     private Rect _windowRect;
 
+    // AppBar button IDs
     private const string ToolbarFlightButtonID = "BTN-SpaceWarpModFlight";
-    private const string ToolbarOABButtonID = "BTN-SpaceWarpModOAB";
+    private const string ToolbarOabButtonID = "BTN-SpaceWarpModOAB";
 
+    // Singleton instance of the plugin class
+    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public static SpaceWarpModPlugin Instance { get; set; }
 
     /// <summary>
@@ -40,7 +46,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
 
         // Register Flight AppBar button
         Appbar.RegisterAppButton(
-            "swinfo_name",
+            ModName,
             ToolbarFlightButtonID,
             AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
             isOpen =>
@@ -52,13 +58,13 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
 
         // Register OAB AppBar Button
         Appbar.RegisterOABAppButton(
-            "swinfo_name",
-            ToolbarOABButtonID,
+            ModName,
+            ToolbarOabButtonID,
             AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
             isOpen =>
             {
                 _isWindowOpen = isOpen;
-                GameObject.Find(ToolbarOABButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
+                GameObject.Find(ToolbarOabButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
             }
         );
 
@@ -75,12 +81,12 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
                 currentVessel.SetGearState(true);
             }
         }
-        catch (Exception e) {}
-        
+        catch (Exception){}
+
         // Fetch a configuration value or create a default one if it does not exist
-        var defaultValue = "my_value";
+        const string defaultValue = "my default value";
         var configValue = Config.Bind<string>("Settings section", "Option 1", defaultValue, "Option description");
-        
+
         // Log the config value into <KSP2 Root>/BepInEx/LogOutput.log
         Logger.LogInfo($"Option 1: {configValue.Value}");
     }
