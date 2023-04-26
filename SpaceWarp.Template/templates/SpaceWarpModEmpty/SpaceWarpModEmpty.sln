@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWarpModEmpty", "src\SpaceWarpModEmpty\SpaceWarpModEmpty.csproj", "{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Deploy|Any CPU = Deploy|Any CPU
+		DeployAndRun|Any CPU = DeployAndRun|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+	EndGlobalSection
+EndGlobal

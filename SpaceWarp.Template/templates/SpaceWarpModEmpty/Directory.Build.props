@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+    <PropertyGroup Label="Framework and language configuration">
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>true</ImplicitUsings>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Build and namespace configuration">
+        <SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildThisFileDirectory)</SolutionDir>
+        <BaseOutputPath>$(SolutionDir)build\bin\$(MSBuildProjectName)</BaseOutputPath>
+        <BaseIntermediateOutputPath>$(SolutionDir)build\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>$(AssemblyName)</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Package source configuration">
+        <RestoreAdditionalProjectSources>
+            https://nuget.spacewarp.org/v3/index.json;
+            ../../external_dlls
+        </RestoreAdditionalProjectSources>
+    </PropertyGroup>
+</Project>
