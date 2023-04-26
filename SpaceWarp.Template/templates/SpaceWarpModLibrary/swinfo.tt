@@ -1,0 +1,34 @@
+﻿<#@ parameter name="ProjectName" type="System.String" #>
+<#@ parameter name="Authors" type="System.String" #>
+<#@ parameter name="Product" type="System.String" #>
+<#@ parameter name="Description" type="System.String" #>
+<#@ parameter name="RepositoryUrl" type="System.String" #>
+<#@ parameter name="Version" type="System.String" #>
+<#@ parameter name="VersionCheckUrl" type="System.String" #>
+<#@ parameter name="Ksp2VersionMin" type="System.String" #>
+<#@ parameter name="Ksp2VersionMax" type="System.String" #>
+<#@ output extension=".json" #>
+{
+  "spec": "1.2",
+  "mod_id": "<#=ProjectName#>",
+  "author": "<#=Authors#>",
+  "name": "<#=Product#>",
+  "description": "<#=Description#>",
+  "source": "<#=RepositoryUrl#>",
+  "version": "<#=Version#>",
+  "version_check": "<#=VersionCheckUrl#>",
+  "version_check_type": "csproj",
+  "ksp2_version": {
+    "min": "<#=Ksp2VersionMin#>",
+    "max": "<#=Ksp2VersionMax#>"
+  },
+  "dependencies": [
+    {
+      "id":  "SpaceWarp",
+      "version": {
+        "min": "1.2.0",
+        "max": "*"
+      }
+    }
+  ]
+}
