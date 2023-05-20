@@ -10,7 +10,7 @@
         <Version Label="Version of the mod">swinfo_version</Version>
         <!-- If using GitHub and this template, VersionCheckUrl points to the raw .csproj file in your main branch,
              e.g. https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj -->
-        <VersionCheckUrl Label="URL to up-to-date swinfo.json">swinfo_version_check</VersionCheckUrl>
+        <VersionCheckUrl Label="URL to up-to-date swinfo.json">swinfo_checkversion</VersionCheckUrl>
         <Ksp2VersionMin Label="Lowest supported version of KSP 2">0.1.2</Ksp2VersionMin>
         <Ksp2VersionMax Label="Highest supported version of KSP 2">*</Ksp2VersionMax>
     </PropertyGroup>

@@ -10,7 +10,7 @@
         <Version Label="Version of the mod">swinfo_version</Version>
         <!-- If using GitHub and this template, VersionCheckUrl points to the raw .csproj file in your main branch,
              e.g. https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj -->
-        <VersionCheckUrl Label="URL to up-to-date swinfo.json">swinfo_version_check</VersionCheckUrl>
+        <VersionCheckUrl Label="URL to up-to-date swinfo.json">swinfo_checkversion</VersionCheckUrl>
         <Ksp2VersionMin Label="Lowest supported version of KSP 2">0.1.2</Ksp2VersionMin>
         <Ksp2VersionMax Label="Highest supported version of KSP 2">*</Ksp2VersionMax>
     </PropertyGroup>
@@ -30,12 +30,12 @@
         </Reference>
     </ItemGroup>
     <ItemGroup Label="NuGet package references">
-        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.0" PrivateAssets="all" />
-        <PackageReference Include="BepInEx.Core" Version="5.*" />
-        <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-        <PackageReference Include="HarmonyX" Version="2.10.1" />
-        <PackageReference Include="SpaceWarp" Version="1.2.0" />
-        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" IncludeAssets="compile" />
+        <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.0" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+        <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
+        <PackageReference Include="HarmonyX" Version="2.10.1"/>
+        <PackageReference Include="SpaceWarp" Version="1.2.0"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33" IncludeAssets="compile"/>
     </ItemGroup>
 </Project>
