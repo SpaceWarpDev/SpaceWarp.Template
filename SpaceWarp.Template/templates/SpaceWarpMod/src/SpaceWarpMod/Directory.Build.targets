@@ -17,7 +17,7 @@
 
     <Target Label="Post build events" Name="PostBuild" AfterTargets="PostBuildEvent">
         <Message Text="Cleaning up previous build directory"/>
-        <RemoveDir Directories="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
+        <RemoveDir Directories="$(SolutionDir)\dist\$(ConfigurationName)"/>
         <MakeDir Directories="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
 
         <Message Text="Copying plugin folder to build directory"/>
