@@ -62,6 +62,13 @@
             "datatype": "text",
             "replaces": "swinfo_checkversion",
             "defaultValue": ""
+        },
+        "LicenseUrl": {
+            "type": "parameter",
+            "description": "URL to the raw LICENSE file (for example in your GitHub repository)",
+            "datatype": "text",
+            "replaces": "swinfo_license",
+            "defaultValue": ""
         }
     }
 }
