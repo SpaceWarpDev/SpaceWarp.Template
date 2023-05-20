@@ -13,7 +13,7 @@ This project serves as a SpaceWarp mod project template for the .NET CLI and Vis
 
 ## Installation
 
-For .NET 7 SDK, you can use the commands as they are written below. **For .NET 6 SDK and older,
+For .NET 7 SDK, you can use the commands as they are written below. **For .NET 6 SDK,
 you need to replace `install` with `--install`.**
 
 You can see the SDK version currently in use and all SDK versions
@@ -48,13 +48,13 @@ of the template which supports SpaceWarp 0.4.0.
 
 ## Updating
 
-To update the template in .NET 7 SDK, run the following command:
+To update the template to the latest version in .NET 7 SDK, run the following command:
 
 ```console
 dotnet new update
 ```
 
-When using .NET 6 SDK or earlier, use the following command instead:
+When using .NET 6 SDK, use the following command instead:
 
 ```console
 dotnet new --update-apply
@@ -69,21 +69,21 @@ The template contains three different types of projects:
 This template creates a general mod project for SpaceWarp. It contains some example code such as creating a window,
 registering app bar buttons and binding to configuration values to get you started.
 
-The template is available under the name `spacewarpmod`.
+**The template is available under the name `spacewarpmod`**.
 
 ### Empty mod project
 
 This template creates an empty mod project for SpaceWarp. It contains no example code and is meant to be used by more
 experienced modders who want to start from scratch.
 
-The template is available under the name `spacewarpmod-empty`.
+**The template is available under the name `spacewarpmod-empty`**.
 
 ### Library mod project
 
 This template creates a library mod project for SpaceWarp. It is pre-configured to automatically generate a NuGet
 package for your mod, which can be used by other mods.
 
-The template is available under the name `spacewarpmod-library`.
+**The template is available under the name `spacewarpmod-library`**.
 
 ## Creating a project
 
@@ -94,7 +94,7 @@ There are two options how to generate a project using this template:
 1. Open `cmd` or `powershell` in the folder where you want your project created
 2. Replace the information in the following command with your own and run it:
    ```console
-   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://github.com/munix/MyAwesomeModName"
+   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/src/MyAwesomeModName/MyAwesomeModName.csproj"
    ```
    Typing `dotnet new <project-type> --help` will show you the possible parameters. You can find more information
    about all project parameters in the **[Project parameters](#project-parameters)** section.
@@ -161,6 +161,8 @@ They apply to all project types and you can find an overview of all of them and 
 | Source        | --Source         | -S             | The repository or download location of the mod's source code<br>(for example: https://github.com/author/mod)                                                                           | `""` _(empty)_             |
 | Version       | --Version        | -V             | The mod's initial version                                                                                                                                                              | `1.0.0`                    |
 | Check Version | --CheckVersion   | -C             | URL to the raw .csproj file in your main branch to check for updates<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj) | `""` _(empty)_             |
+| License URL*  | --LicenseUrl     | -L             | URL to the license file of your mod<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/LICENSE)                                                             | `""` _(empty)_             |
+&ast;The **License URL** parameter only applies to the **spacewarpmod-library** project type.
 
-None of the parameters are required. If you don't provide any, the template will generate a project with the listed
+None of the parameters other than **Project name** are required. If you don't provide any, the template will generate a project with the listed
 default values and you'll be able to fill them in later in your .csproj file.
