@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <PackageType>Template</PackageType>
-        <PackageVersion>1.1.1.2</PackageVersion>
+        <PackageVersion>1.2.0.1</PackageVersion>
         <PackageId>SpaceWarp.Template</PackageId>
         <Title>SpaceWarp Mod Template</Title>
         <Authors>munix</Authors>
@@ -19,6 +19,7 @@
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/jan-bures/SpaceWarp.Template/</RepositoryUrl>
+        <NoDefaultExcludes>true</NoDefaultExcludes>
     </PropertyGroup>
     <ItemGroup>
         <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
