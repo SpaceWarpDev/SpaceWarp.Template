@@ -17,8 +17,7 @@
 
     <PropertyGroup Label="Package source configuration">
         <RestoreAdditionalProjectSources>
-            https://nuget.spacewarp.org/v3/index.json;
-            ../../external_dlls
+            https://nuget.spacewarp.org/v3/index.json
         </RestoreAdditionalProjectSources>
     </PropertyGroup>
 </Project>
