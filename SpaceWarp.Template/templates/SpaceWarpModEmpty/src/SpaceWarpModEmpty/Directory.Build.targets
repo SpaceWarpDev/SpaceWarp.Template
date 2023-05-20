@@ -7,7 +7,7 @@
 
     <ItemGroup Label="Template parsing configuration">
         <PackageReference Include="Mono.TextTemplating" Version="2.2.1"/>
-        <TextTemplate Include="$(SolutionDir)\swinfo.tt"/>
+        <TextTemplate Include="$(SolutionDir)\plugin_template\swinfo.tt"/>
         <Generated Include="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\swinfo.json"/>
         <None Include="$(SolutionDir)\swinfo.tt"/>
     </ItemGroup>
@@ -22,6 +22,7 @@
 
         <Message Text="Copying plugin folder to build directory"/>
         <Exec Command="xcopy /E /Y &quot;$(SolutionDir)\plugin_template&quot; &quot;$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)&quot;"/>
+        <Delete Files="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\swinfo.tt"/>
 
         <Message Text="Copying mod DLL to build directory"/>
         <Copy SourceFiles="$(TargetPath)"
@@ -46,9 +47,11 @@
               DestinationFiles="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\README.txt"/>
 
         <Message Text="Compressing built plugin folder" Condition="$(ConfigurationName) == Release"/>
+        <Delete Condition="$(ConfigurationName) == Release"
+                Files="$(SolutionDir)\dist\$(ProjectName)-$(Version).zip" />
         <ZipDirectory Condition="$(ConfigurationName) == Release"
-                      SourceDirectory="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx"
-                      DestinationFile="$(SolutionDir)\dist\$(ConfigurationName)\$(ProjectName)-$(Version).zip"/>
+                      SourceDirectory="$(SolutionDir)\dist\$(ConfigurationName)"
+                      DestinationFile="$(SolutionDir)\dist\$(ProjectName)-$(Version).zip"/>
 
         <Message Text="Clean up the game's plugin folder" Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
         <RemoveDir Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
