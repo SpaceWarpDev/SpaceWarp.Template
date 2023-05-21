@@ -10,7 +10,7 @@
         <PackageReference Include="Mono.TextTemplating" Version="2.2.1"/>
         <TextTemplate Include="$(SolutionDir)\plugin_template\swinfo.tt"/>
         <Generated Include="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\swinfo.json"/>
-        <None Include="$(SolutionDir)\swinfo.tt"/>
+        <None Include="$(SolutionDir)\plugin_template\swinfo.tt"/>
     </ItemGroup>
     <Target Name="TextTemplateTransform" BeforeTargets="PostBuildEvent">
         <Exec Command="dotnet t4 &quot;%(TextTemplate.Identity)&quot; -o &quot;$(TargetDir)\swinfo.json&quot; -p=ProjectName=&quot;$(ProjectName)&quot; -p=Authors=&quot;$(Authors)&quot; -p=Product=&quot;$(Product)&quot; -p=Description=&quot;$(Description)&quot; -p=RepositoryUrl=&quot;$(RepositoryUrl)&quot; -p=Version=&quot;$(Version)&quot; -p=VersionCheckUrl=&quot;$(VersionCheckUrl)&quot; -p=Ksp2VersionMin=&quot;$(Ksp2VersionMin)&quot; -p=Ksp2VersionMax=&quot;$(Ksp2VersionMax)&quot;"/>
