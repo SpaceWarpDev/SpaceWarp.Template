@@ -147,6 +147,28 @@ For Windows users, batch scripts are included in the `scripts` folder to provide
 by simply double-clicking one of the configurations: `build-release.bat`, `build-debug.bat`, `build-deploy.bat` and
 `build-run.bat`. Otherwise you can use your IDE or the .NET CLI to build the project.
 
+### swinfo.json
+Since template version 1.2.0.1, your generated project will no longer directly contain a `swinfo.json` file. Instead,
+it will be generated automatically during the build process from the project's properties and the
+`plugin_template/swinfo.tt` file. This means that you no longer have to manually update the `swinfo.json` file when
+you change your project's properties, such as the version.
+
+The only properties in the `swinfo.tt` template which require manual edits are `spec` and `dependencies`. All the other
+properties are automatically filled in from your plugin's main .csproj file's properties.
+Following is the table of how individual properties are mapped:
+
+| swinfo.json property | .csproj property                                             |
+|----------------------|--------------------------------------------------------------|
+| mod_id               | `<ProjectName>`<br>(comes from the name of the .csproj file) |
+| author               | `<Authors>`                                                  |
+| name                 | `<Product>`                                                  |
+| description          | `<Description>`                                              |
+| source               | `<RepositoryUrl>`                                            |
+| version              | `<Version>`                                                  |
+| version_check        | `<VersionCheckUrl>`                                          |
+| ksp2_version.min     | `<Ksp2VersionMin>`                                           |
+| ksp2_version.max     | `<Ksp2VersionMax>`                                           |
+
 ## Project parameters
 
 When creating your project in either the console or Visual Studio, you are provided a number of parameters.
