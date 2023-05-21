@@ -1,0 +1,15 @@
+name: Space Warp Version Checker
+
+on:
+  push:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Verify KSP2 Mod
+        uses: Rexicon226/VerifierAction@V0.5
