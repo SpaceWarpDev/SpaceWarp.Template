@@ -48,10 +48,9 @@
 
         <Message Text="Compressing built plugin folder" Condition="$(ConfigurationName) == Release"/>
         <Delete Condition="$(ConfigurationName) == Release"
-                Files="$(SolutionDir)\dist\$(ProjectName)-$(Version).zip" />
-        <ZipDirectory Condition="$(ConfigurationName) == Release"
-                      SourceDirectory="$(SolutionDir)\dist\$(ConfigurationName)"
-                      DestinationFile="$(SolutionDir)\dist\$(ProjectName)-$(Version).zip"/>
+                Files="$(SolutionDir)\dist\$(SolutionName)-$(Version).zip"/>
+        <Exec Condition="$(ConfigurationName) == Release"
+              Command="powershell Compress-Archive -Path '$(SolutionDir)\dist\$(ConfigurationName)\BepInEx' -DestinationPath '$(SolutionDir)\dist\$(SolutionName)-$(Version).zip'"/>
 
         <Message Text="Clean up the game's plugin folder" Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
         <RemoveDir Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
