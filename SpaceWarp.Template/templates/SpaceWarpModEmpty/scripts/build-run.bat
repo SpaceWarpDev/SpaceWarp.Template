@@ -1,2 +1,2 @@
 @echo off
-dotnet build SpaceWarpModEmpty.sln -c DeployAndRun
+dotnet build "../SpaceWarpModEmpty.sln" -c DeployAndRun
