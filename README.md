@@ -66,8 +66,10 @@ The template contains three different types of projects:
 
 ### General mod project
 
-This template creates a general mod project for SpaceWarp. It contains some example code such as creating a window,
-registering app bar buttons and binding to configuration values to get you started.
+This template creates a general mod project for SpaceWarp. It contains some example code (such as creating a window using
+the IMGUI library, registering app bar buttons and setting up BepInEx configuration) to get you started.
+
+This is the recommended template for beginners who want to get familiar with KSP 2 modding.
 
 **The template is available under the name `spacewarpmod`**.
 
@@ -76,12 +78,17 @@ registering app bar buttons and binding to configuration values to get you start
 This template creates an empty mod project for SpaceWarp. It contains no example code and is meant to be used by more
 experienced modders who want to start from scratch.
 
+This is the recommended template for more experienced modders who want to create a project which does not contain any
+unnecessary example code.
+
 **The template is available under the name `spacewarpmod-empty`**.
 
 ### Library mod project
 
 This template creates a library mod project for SpaceWarp. It is pre-configured to automatically generate a NuGet
 package for your mod, which can be used by other mods.
+
+This is the recommended template for modders who want to create a library mod which can be used by other mods.
 
 **The template is available under the name `spacewarpmod-library`**.
 
@@ -115,7 +122,8 @@ There are two options how to generate a project using this template:
 4. Fill out your project name and click **Next**  
    ![Step 4](https://i.imgur.com/itHtr8H.png)
 5. Fill out the fields on the following page. You can find more information about the parameters by hovering
-   over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.  
+   over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.<br>
+   **Make sure that "Place solution and project in the same directory" is checked.**
    ![Step 5](https://i.imgur.com/g5mkGSp.png)
 6. Click on **Create** and your project will be made.
 7. Copy the file `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` into the `<solution_root>/external_dlls/`
@@ -130,12 +138,13 @@ It is necessary to always have the `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-C
 
 Four build configurations are defined: **Debug**, **Release**, **Deploy** and **DeployAndRun**.
 Building any of them will create a folder with the name of the configuration in the project root. This will create
-the complete folder structure for you, i.e. `BepInEx/plugins/your_mod/...`, and all the folders and files necessary
+the complete folder structure for you, i.e. `BepInEx/plugins/YourMod/...`, and all the folders and files necessary
 to distribute your mod (such as `LICENSE`, `assets/`, `swinfo.json`...) will be built and copied here.
 
-When building any other target than Release, the file `your_mod.pdb` is also copied next to `your_mod.dll`,
+When building any other target than Release, the file `YourMod.pdb` is also copied next to `YourMod.dll`,
 so that you can easily start debugging your mod. To quickly get started with breakpoint debugging your KSP 2 mods, see
-**[this document](https://gist.github.com/gotmachine/d973adcb9ae413386291170fa346d043)**.
+**[Debugging and profiling KSP plugins](https://gist.github.com/gotmachine/d973adcb9ae413386291170fa346d043) by
+[Gotmachine](https://github.com/gotmachine)**.
 
 In the **Deploy** and **DeployAndRun** configurations, your mod is built as if using the **Debug** configuration,
 and then it gets automatically deployed into your game folder specified either in the `KSP2DIR` environment variable
