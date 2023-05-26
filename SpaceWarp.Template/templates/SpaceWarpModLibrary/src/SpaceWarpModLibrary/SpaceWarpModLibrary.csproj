@@ -15,12 +15,6 @@
         <Ksp2VersionMax Label="Highest supported version of KSP 2">*</Ksp2VersionMax>
     </PropertyGroup>
 
-    <!-- Build configuration -->
-    <PropertyGroup Label="Build configuration">
-        <!-- Set this to the path to your KSP 2 folder if you don't have the KSP2DIR environmental variable set -->
-        <KSP2DIR Condition="'$(KSP2DIR)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program 2</KSP2DIR>
-    </PropertyGroup>
-
     <!-- NuGet package configuration -->
     <PropertyGroup Label="NuGet package configuration">
         <PackageIcon Label="Optional filename of your NuGet package's icon">icon.png</PackageIcon>
