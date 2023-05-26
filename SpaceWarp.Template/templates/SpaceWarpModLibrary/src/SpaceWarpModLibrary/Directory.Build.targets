@@ -68,7 +68,8 @@
         </ItemGroup>
         <Message Text="Deploy plugin to game folder"
                  Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
-        <Copy SourceFiles="@(DistFolder)"
+        <Copy Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
+              SourceFiles="@(DistFolder)"
               DestinationFolder="$(KSP2DIR)\BepInEx\plugins\$(ProjectName)\%(RecursiveDir)"/>
 
         <Message Text="Deploy plugin and run game" Condition="$(ConfigurationName) == DeployAndRun"/>
