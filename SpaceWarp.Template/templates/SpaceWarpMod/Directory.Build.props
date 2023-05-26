@@ -9,13 +9,13 @@
 
     <PropertyGroup Label="Game folder configuration">
         <!-- Set this to the path to your KSP 2 folder if you don't have the KSP2DIR environmental variable set -->
-        <KSP2DIR Condition="'$(KSP2DIR)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Kerbal Space Program 2</KSP2DIR>
+        <KSP2DIR Condition="'$(KSP2DIR)' == ''">C:/Program Files (x86)/Steam/steamapps/common/Kerbal Space Program 2</KSP2DIR>
     </PropertyGroup>
 
     <PropertyGroup Label="Build and namespace configuration">
         <SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildThisFileDirectory)</SolutionDir>
-        <BaseOutputPath>$(SolutionDir)build\bin\$(MSBuildProjectName)</BaseOutputPath>
-        <BaseIntermediateOutputPath>$(SolutionDir)build\obj\$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <BaseOutputPath>$(SolutionDir)build/bin/$(MSBuildProjectName)</BaseOutputPath>
+        <BaseIntermediateOutputPath>$(SolutionDir)build/obj/$(MSBuildProjectName)</BaseIntermediateOutputPath>
         <AssemblyName>$(MSBuildProjectName)</AssemblyName>
         <RootNamespace>$(AssemblyName)</RootNamespace>
         <NoWarn>$(NoWarn);CS0436</NoWarn>

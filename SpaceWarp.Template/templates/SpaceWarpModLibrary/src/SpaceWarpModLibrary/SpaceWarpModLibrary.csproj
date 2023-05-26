@@ -21,17 +21,17 @@
         <PackageId Label="ID of your NuGet package">$(ProjectName)</PackageId>
         <!-- For example https://raw.githubusercontent.com/YourUsername/YourRepo/main/LICENSE -->
         <PackageLicenseUrl Label="URL to the license of your mod">swinfo_license</PackageLicenseUrl>
-        <PackageOutputPath Label="Path to the NuGet package output">..\..\nuget</PackageOutputPath>
+        <PackageOutputPath Label="Path to the NuGet package output">../../nuget</PackageOutputPath>
         <PackageProjectUrl Label="Optional URL to your project's website (e.g. forum post)">swinfo_source</PackageProjectUrl>
         <PackageReadmeFile Label="Filename of your README file">README.md</PackageReadmeFile>
         <PackageTags Label="Optional tags of your NuGet package">ksp2;mod;library</PackageTags>
     </PropertyGroup>
     <Target Name="IncludeAllFilesInTargetDir" AfterTargets="Build">
         <ItemGroup>
-            <None Label="Optional path to NuGet package's icon" Include="$(SolutionDir)\images\icon.png" Pack="true" PackagePath="\"/>
-            <None Label="Path to LICENSE file" Include="$(SolutionDir)LICENSE" Pack="true" PackagePath="\"/>
-            <None Label="Path to README file" Include="$(SolutionDir)\README.md" Pack="true" PackagePath="\"/>
-            <None Label="Path to the target build" Include="$(TargetDir)\**" Pack="true" PackagePath="\lib\$(TargetFramework)"/>
+            <None Label="Optional path to NuGet package's icon" Include="$(SolutionDir)/images/icon.png" Pack="true" PackagePath="/"/>
+            <None Label="Path to LICENSE file" Include="$(SolutionDir)/LICENSE" Pack="true" PackagePath="/"/>
+            <None Label="Path to README file" Include="$(SolutionDir)/README.md" Pack="true" PackagePath="/"/>
+            <None Label="Path to the target build" Include="$(TargetDir)/**" Pack="true" PackagePath="/lib/$(TargetFramework)"/>
         </ItemGroup>
     </Target>
 

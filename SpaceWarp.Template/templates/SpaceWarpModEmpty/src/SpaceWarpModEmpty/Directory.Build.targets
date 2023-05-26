@@ -7,48 +7,48 @@
 
     <ItemGroup Label="Template parsing configuration">
         <PackageReference Include="Mono.TextTemplating" Version="2.2.1"/>
-        <TextTemplate Include="$(SolutionDir)\plugin_template\swinfo.tt"/>
-        <Generated Include="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\swinfo.json"/>
-        <None Include="$(SolutionDir)\plugin_template\swinfo.tt"/>
+        <TextTemplate Include="$(SolutionDir)/plugin_template/swinfo.tt"/>
+        <Generated Include="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/swinfo.json"/>
+        <None Include="$(SolutionDir)/plugin_template/swinfo.tt"/>
     </ItemGroup>
     <Target Name="TextTemplateTransform" BeforeTargets="PostBuildEvent">
-        <Exec Command="dotnet t4 &quot;%(TextTemplate.Identity)&quot; -o &quot;$(TargetDir)\swinfo.json&quot; -p=ProjectName=&quot;$(ProjectName)&quot; -p=Authors=&quot;$(Authors)&quot; -p=Product=&quot;$(Product)&quot; -p=Description=&quot;$(Description)&quot; -p=RepositoryUrl=&quot;$(RepositoryUrl)&quot; -p=Version=&quot;$(Version)&quot; -p=VersionCheckUrl=&quot;$(VersionCheckUrl)&quot; -p=Ksp2VersionMin=&quot;$(Ksp2VersionMin)&quot; -p=Ksp2VersionMax=&quot;$(Ksp2VersionMax)&quot;"/>
+        <Exec Command="dotnet t4 &quot;%(TextTemplate.Identity)&quot; -o &quot;$(TargetDir)/swinfo.json&quot; -p=ProjectName=&quot;$(ProjectName)&quot; -p=Authors=&quot;$(Authors)&quot; -p=Product=&quot;$(Product)&quot; -p=Description=&quot;$(Description)&quot; -p=RepositoryUrl=&quot;$(RepositoryUrl)&quot; -p=Version=&quot;$(Version)&quot; -p=VersionCheckUrl=&quot;$(VersionCheckUrl)&quot; -p=Ksp2VersionMin=&quot;$(Ksp2VersionMin)&quot; -p=Ksp2VersionMax=&quot;$(Ksp2VersionMax)&quot;"/>
     </Target>
 
     <ItemGroup Label="Plugin template folder to be copied">
-        <PluginTemplate Include="$(SolutionDir)\plugin_template\**\*.*"/>
+        <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*"/>
     </ItemGroup>
     <Target Label="Post build events" Name="PostBuild" AfterTargets="PostBuildEvent">
         <Message Text="Cleaning up previous build directory"/>
-        <RemoveDir Directories="$(SolutionDir)\dist\$(ConfigurationName)"/>
-        <MakeDir Directories="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
+        <RemoveDir Directories="$(SolutionDir)/dist/$(ConfigurationName)"/>
+        <MakeDir Directories="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
         <Message Text="Copying plugin folder to build directory"/>
         <Copy SourceFiles="@(PluginTemplate)"
-              DestinationFolder="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\%(RecursiveDir)"/>
-        <Delete Files="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\swinfo.tt"/>
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/%(RecursiveDir)"/>
+        <Delete Files="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/swinfo.tt"/>
 
         <Message Text="Copying mod DLL to build directory"/>
         <Copy SourceFiles="$(TargetPath)"
-              DestinationFolder="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
         <Message Text="Copying swinfo.json to build directory"/>
-        <Copy SourceFiles="$(TargetDir)\swinfo.json"
-              DestinationFolder="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
+        <Copy SourceFiles="$(TargetDir)/swinfo.json"
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
         <Message Text="Copying mod PDB to build directory"
                  Condition="$(ConfigurationName) == Debug Or $(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
         <Copy Condition="$(ConfigurationName) == Debug Or $(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
               SourceFiles="$(TargetDir)$(TargetName).pdb"
-              DestinationFolder="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
         <Message Text="Copying LICENSE and README to build directory"/>
-        <Copy Condition="Exists('$(SolutionDir)\LICENSE')"
-              SourceFiles="$(SolutionDir)\LICENSE"
-              DestinationFolder="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)"/>
-        <Copy Condition="Exists('$(SolutionDir)\README.md')"
-              SourceFiles="$(SolutionDir)\README.md"
-              DestinationFiles="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\README.txt"/>
+        <Copy Condition="Exists('$(SolutionDir)/LICENSE')"
+              SourceFiles="$(SolutionDir)/LICENSE"
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
+        <Copy Condition="Exists('$(SolutionDir)/README.md')"
+              SourceFiles="$(SolutionDir)/README.md"
+              DestinationFiles="$(SolutionDir)/dist/$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\README.txt"/>
 
         <Message Text="Compressing built plugin folder" Condition="$(ConfigurationName) == Release"/>
         <Delete Condition="$(ConfigurationName) == Release"

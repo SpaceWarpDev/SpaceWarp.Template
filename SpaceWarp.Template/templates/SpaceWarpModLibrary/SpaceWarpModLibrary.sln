@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWarpModLibrary", "src\SpaceWarpModLibrary\SpaceWarpModLibrary.csproj", "{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWarpModLibrary", "src/SpaceWarpModLibrary/SpaceWarpModLibrary.csproj", "{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
