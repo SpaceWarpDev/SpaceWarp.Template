@@ -66,7 +66,8 @@ The template contains three different types of projects:
 
 ### General mod project
 
-This template creates a general mod project for SpaceWarp. It contains some example code (such as creating a window using
+This template creates a general mod project for SpaceWarp. It contains some example code (such as creating a window
+using
 the IMGUI library, registering app bar buttons and setting up BepInEx configuration) to get you started.
 
 This is the recommended template for beginners who want to get familiar with KSP 2 modding.
@@ -96,21 +97,12 @@ This is the recommended template for modders who want to create a library mod wh
 
 There are two options how to generate a project using this template:
 
-### A. Command line
+### A. Project generator
 
-1. Open `cmd` or `powershell` in the folder where you want your project created
-2. Replace the information in the following command with your own and run it:
-   ```console
-   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/src/MyAwesomeModName/MyAwesomeModName.csproj"
-   ```
-   Typing `dotnet new <project-type> --help` will show you the possible parameters. You can find more information
-   about all project parameters in the **[Project parameters](#project-parameters)** section.
-
-   Replace `<project-type>` with one of the three project types listed in the **[Template types](#template-types)**
-   section.
-
-3. Copy the file `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` into the `<project root>/external_dlls/`
-   folder.
+1. Download the latest version of **create-project.bat** from
+   **[GitHub releases](https://github.com/SpaceWarpDev/SpaceWarp.Template/releases)**
+2. Place the file in the folder in which you want your project folders to be created
+3. Run the file and follow the instructions
 
 ### B. Visual Studio 2022
 
@@ -125,11 +117,25 @@ There are two options how to generate a project using this template:
    over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.<br>
    **Make sure that "Place solution and project in the same directory" is checked.**
    ![Step 5](https://i.imgur.com/g5mkGSp.png)
-6. Click on **Create** and your project will be made.
-7. Copy the file `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` into the `<solution_root>/external_dlls/`
-   folder.
-8. Rebuild the solution once for all references to be resolved  
+6. Open `cmd` in the project directory and run `scripts\setup.bat`. This will guide you through the process of
+   finishing the project setup.
+7. Rebuild the solution once for all references to be resolved  
    ![Step 8](https://i.imgur.com/MeBZBbD.png)
+
+### C. Manually with .NET CLI
+
+1. Open `cmd` or `powershell` in the folder where you want your project created
+2. Replace the information in the following command with your own and run it:
+   ```console
+   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/src/MyAwesomeModName/MyAwesomeModName.csproj"
+   ```
+   Typing `dotnet new <project-type> --help` will show you the possible parameters. You can find more information
+   about all project parameters in the **[Project parameters](#project-parameters)** section.
+
+   Replace `<project-type>` with one of the three project types listed in the **[Template types](#template-types)**
+   section.
+3. Open `cmd` in the project directory and run `scripts\setup.bat`. This will guide you through the process of
+   finishing the project setup.
 
 ## Building a project
 
@@ -157,6 +163,7 @@ by simply double-clicking one of the configurations: `build-release.bat`, `build
 `build-run.bat`. Otherwise you can use your IDE or the .NET CLI to build the project.
 
 ### swinfo.json
+
 Since template version 1.2.0.1, your generated project will no longer directly contain a `swinfo.json` file. Instead,
 it will be generated automatically during the build process from the project's properties and the
 `plugin_template/swinfo.tt` file. This means that you no longer have to manually update the `swinfo.json` file when
@@ -193,7 +200,9 @@ They apply to all project types and you can find an overview of all of them and 
 | Version       | --Version        | -V             | The mod's initial version                                                                                                                                                              | `1.0.0`                    |
 | Check Version | --CheckVersion   | -C             | URL to the raw .csproj file in your main branch to check for updates<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj) | `""` _(empty)_             |
 | License URL*  | --LicenseUrl     | -L             | URL to the license file of your mod<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/LICENSE)                                                             | `""` _(empty)_             |
+
 &ast;The **License URL** parameter only applies to the **spacewarpmod-library** project type.
 
-None of the parameters other than **Project name** are required. If you don't provide any, the template will generate a project with the listed
+None of the parameters other than **Project name** are required. If you don't provide any, the template will generate a
+project with the listed
 default values and you'll be able to fill them in later in your .csproj file.
