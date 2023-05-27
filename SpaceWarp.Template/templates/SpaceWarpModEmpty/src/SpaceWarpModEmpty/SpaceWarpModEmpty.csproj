@@ -28,6 +28,6 @@
         <PackageReference Include="HarmonyX" Version="2.10.1"/>
         <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.2"/>
         <PackageReference Include="SpaceWarp" Version="1.2.0"/>
-        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.23162" IncludeAssets="compile"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1" IncludeAssets="compile"/>
     </ItemGroup>
 </Project>
