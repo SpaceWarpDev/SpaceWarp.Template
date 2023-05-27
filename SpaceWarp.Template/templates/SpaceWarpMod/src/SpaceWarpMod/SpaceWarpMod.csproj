@@ -22,12 +22,12 @@
     <ItemGroup Label="NuGet package references">
         <!-- Add references to any NuGet packages you want to use in your mod here -->
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.0" PrivateAssets="all"/>
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all"/>
         <PackageReference Include="BepInEx.Core" Version="5.*"/>
         <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
         <PackageReference Include="HarmonyX" Version="2.10.1"/>
         <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.2"/>
         <PackageReference Include="SpaceWarp" Version="1.2.0"/>
-        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1" IncludeAssets="compile"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1" Publicize="true"/>
     </ItemGroup>
 </Project>
