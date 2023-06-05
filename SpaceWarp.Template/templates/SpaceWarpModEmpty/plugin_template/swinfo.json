@@ -5,7 +5,7 @@
   "name": "swinfo_name",
   "description": "swinfo_description",
   "source": "swinfo_source",
-  "version": "1.0",
+  "version": "swinfo_version",
   "version_check": "swinfo_checkversion",
   "ksp2_version": {
     "min": "0.1.2",
