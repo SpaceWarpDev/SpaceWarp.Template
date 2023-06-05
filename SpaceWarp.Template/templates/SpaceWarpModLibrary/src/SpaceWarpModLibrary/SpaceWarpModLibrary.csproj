@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <!-- Mod configuration -->
-    <PropertyGroup Label="Mod configuration">
-        <Product Label="Name of the mod">swinfo_name</Product>
-        <Authors Label="Author(s) of the mod">swinfo_author</Authors>
-        <Description Label="Description of the mod">swinfo_description</Description>
-        <RepositoryType Label="Type of source repository (git/svn)">git</RepositoryType>
-        <RepositoryUrl Label="Source repository URL">swinfo_source</RepositoryUrl>
-        <Version Label="Version of the mod">swinfo_version</Version>
-        <!-- If using GitHub and this template, VersionCheckUrl points to the raw .csproj file in your main branch,
-             e.g. https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj -->
-        <VersionCheckUrl Label="URL to up-to-date swinfo.json">swinfo_checkversion</VersionCheckUrl>
-        <Ksp2VersionMin Label="Lowest supported version of KSP 2">0.1.2</Ksp2VersionMin>
-        <Ksp2VersionMax Label="Highest supported version of KSP 2">*</Ksp2VersionMax>
-    </PropertyGroup>
-
     <!-- NuGet package configuration -->
     <PropertyGroup Label="NuGet package configuration">
         <PackageIcon Label="Optional filename of your NuGet package's icon">icon.png</PackageIcon>

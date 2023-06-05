@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
+using JetBrains.Annotations;
 using KSP.UI.Binding;
 using SpaceWarp;
 using SpaceWarp.API.Assets;
@@ -17,11 +18,9 @@ namespace SpaceWarpMod;
 public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
 {
     // These are useful in case some other mod wants to add a dependency to this one
-    // ReSharper disable UnusedMember.Global
-    public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
-    public const string ModName = MyPluginInfo.PLUGIN_NAME;
-    public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
-    // ReSharper restore UnusedMember.Global
+    [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
+    [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
+    [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     // UI window state
     private bool _isWindowOpen;
@@ -32,7 +31,6 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
     private const string ToolbarOabButtonID = "BTN-SpaceWarpModOAB";
 
     // Singleton instance of the plugin class
-    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public static SpaceWarpModPlugin Instance { get; set; }
 
     /// <summary>
@@ -48,7 +46,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
         Appbar.RegisterAppButton(
             ModName,
             ToolbarFlightButtonID,
-            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
             isOpen =>
             {
                 _isWindowOpen = isOpen;
@@ -60,7 +58,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
         Appbar.RegisterOABAppButton(
             ModName,
             ToolbarOabButtonID,
-            AssetManager.GetAsset<Texture2D>($"{SpaceWarpMetadata.ModID}/images/icon.png"),
+            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
             isOpen =>
             {
                 _isWindowOpen = isOpen;

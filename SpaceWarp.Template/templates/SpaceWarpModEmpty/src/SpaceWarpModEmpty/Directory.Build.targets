@@ -1,39 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-    <PropertyGroup>
-        <Configurations>Debug;Release;Deploy;DeployAndRun</Configurations>
-        <Platforms>AnyCPU</Platforms>
-    </PropertyGroup>
-
-    <ItemGroup Label="Template parsing configuration">
-        <PackageReference Include="Mono.TextTemplating" Version="2.2.1"/>
-        <TextTemplate Include="$(SolutionDir)/plugin_template/swinfo.tt"/>
-        <Generated Include="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/swinfo.json"/>
-        <None Include="$(SolutionDir)/plugin_template/swinfo.tt"/>
-    </ItemGroup>
-    <Target Name="TextTemplateTransform" BeforeTargets="PostBuildEvent">
-        <Exec Command="dotnet t4 &quot;%(TextTemplate.Identity)&quot; -o &quot;$(TargetDir)/swinfo.json&quot; -p=ProjectName=&quot;$(ProjectName)&quot; -p=Authors=&quot;$(Authors)&quot; -p=Product=&quot;$(Product)&quot; -p=Description=&quot;$(Description)&quot; -p=RepositoryUrl=&quot;$(RepositoryUrl)&quot; -p=Version=&quot;$(Version)&quot; -p=VersionCheckUrl=&quot;$(VersionCheckUrl)&quot; -p=Ksp2VersionMin=&quot;$(Ksp2VersionMin)&quot; -p=Ksp2VersionMax=&quot;$(Ksp2VersionMax)&quot;"/>
-    </Target>
-
-    <ItemGroup Label="Plugin template folder to be copied">
-        <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*"/>
-    </ItemGroup>
     <Target Label="Post build events" Name="PostBuild" AfterTargets="PostBuildEvent">
         <Message Text="Cleaning up previous build directory"/>
         <RemoveDir Directories="$(SolutionDir)/dist/$(ConfigurationName)"/>
         <MakeDir Directories="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
+        <ItemGroup Label="Plugin template folder to be copied">
+            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*"/>
+        </ItemGroup>
         <Message Text="Copying plugin folder to build directory"/>
         <Copy SourceFiles="@(PluginTemplate)"
               DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/%(RecursiveDir)"/>
-        <Delete Files="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/swinfo.tt"/>
 
         <Message Text="Copying mod DLL to build directory"/>
         <Copy SourceFiles="$(TargetPath)"
-              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
-
-        <Message Text="Copying swinfo.json to build directory"/>
-        <Copy SourceFiles="$(TargetDir)/swinfo.json"
               DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
         <Message Text="Copying mod PDB to build directory"
@@ -48,30 +28,30 @@
               DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
         <Copy Condition="Exists('$(SolutionDir)/README.md')"
               SourceFiles="$(SolutionDir)/README.md"
-              DestinationFiles="$(SolutionDir)/dist/$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\README.txt"/>
+              DestinationFiles="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/README.txt"/>
 
         <Message Text="Compressing built plugin folder" Condition="$(ConfigurationName) == Release"/>
         <Delete Condition="$(ConfigurationName) == Release"
-                Files="$(SolutionDir)\dist\$(SolutionName)-$(Version).zip"/>
+                Files="$(SolutionDir)/dist/$(SolutionName)-$(Version).zip"/>
         <Exec Condition="$(ConfigurationName) == Release"
-              Command="powershell Compress-Archive -Path '$(SolutionDir)\dist\$(ConfigurationName)\BepInEx' -DestinationPath '$(SolutionDir)\dist\$(SolutionName)-$(Version).zip'"/>
+              Command="powershell Compress-Archive -Path '$(SolutionDir)/dist/$(ConfigurationName)/BepInEx' -DestinationPath '$(SolutionDir)/dist/$(SolutionName)-$(Version).zip'"/>
 
         <Message Text="Clean up the game's plugin folder" Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
         <RemoveDir Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
-                   Directories="$(KSP2DIR)\BepInEx\plugins\$(ProjectName)"/>
+                   Directories="$(KSP2DIR)/BepInEx/plugins/$(ProjectName)"/>
         <MakeDir Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
-                 Directories="$(KSP2DIR)\BepInEx\plugins\$(ProjectName)"/>
+                 Directories="$(KSP2DIR)/BepInEx/plugins/$(ProjectName)"/>
 
         <ItemGroup Label="Dist folder to be copied">
-            <DistFolder Include="$(SolutionDir)\dist\$(ConfigurationName)\BepInEx\plugins\$(ProjectName)\**\*.*"/>
+            <DistFolder Include="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/**/*.*"/>
         </ItemGroup>
         <Message Text="Deploy plugin to game folder"
                  Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
         <Copy Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
               SourceFiles="@(DistFolder)"
-              DestinationFolder="$(KSP2DIR)\BepInEx\plugins\$(ProjectName)\%(RecursiveDir)"/>
+              DestinationFolder="$(KSP2DIR)/BepInEx/plugins/$(ProjectName)/%(RecursiveDir)"/>
 
         <Message Text="Deploy plugin and run game" Condition="$(ConfigurationName) == DeployAndRun"/>
-        <Exec Command="&quot;$(KSP2DIR)\KSP2_x64.exe&quot;" Condition="$(ConfigurationName) == DeployAndRun"/>
+        <Exec Command="&quot;$(KSP2DIR)/KSP2_x64.exe&quot;" Condition="$(ConfigurationName) == DeployAndRun"/>
     </Target>
 </Project>

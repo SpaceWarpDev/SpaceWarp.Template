@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using JetBrains.Annotations;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
 
@@ -9,14 +10,11 @@ namespace SpaceWarpModLibrary;
 public class SpaceWarpModLibraryPlugin : BaseSpaceWarpPlugin
 {
     // These are useful in case some other mod wants to add a dependency to this one
-    // ReSharper disable UnusedMember.Global
-    public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
-    public const string ModName = MyPluginInfo.PLUGIN_NAME;
-    public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
-    // ReSharper restore UnusedMember.Global
+    [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
+    [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
+    [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     // Singleton instance of the plugin class
-    // ReSharper disable once UnusedAutoPropertyAccessor.Global
     public static SpaceWarpModLibraryPlugin Instance { get; set; }
 
     /// <summary>

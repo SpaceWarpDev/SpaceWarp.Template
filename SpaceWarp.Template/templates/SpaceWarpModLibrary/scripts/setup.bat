@@ -1,8 +1,5 @@
 @echo off
 
-echo Installing templating tools...
-dotnet tool restore
-
 if not "%KSP2DIR%" == "" (
     goto license_start
 )
