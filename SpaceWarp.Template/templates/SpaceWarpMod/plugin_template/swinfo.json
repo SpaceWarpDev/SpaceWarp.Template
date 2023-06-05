@@ -13,7 +13,7 @@
   },
   "dependencies": [
     {
-      "id": "SpaceWarp",
+      "id": "com.github.x606.spacewarp",
       "version": {
         "min": "1.2.0",
         "max": "*"
