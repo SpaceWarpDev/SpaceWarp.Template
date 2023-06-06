@@ -12,6 +12,8 @@ choice /c 123 /n /m "Choice [1-3]: "
 if %errorlevel% == 0 goto error
 if %errorlevel% == 255 goto error
 
+set choice=%errorlevel%
+
 echo.
 echo Fill in the following information:
 echo (Parameters marked with (*) are required, the rest are optional.)
@@ -44,9 +46,9 @@ set /p "Version=Version (default is 1.0.0): "
 set "CheckVersion="
 set /p "CheckVersion=Version check URL (default is empty): "
 
-if %errorlevel% == 1 goto general
-if %errorlevel% == 2 goto empty
-if %errorlevel% == 3 goto library
+if %choice% == 1 goto general
+if %choice% == 2 goto empty
+if %choice% == 3 goto library
 
 :error
 echo Invalid choice.
@@ -65,7 +67,7 @@ goto setup
 :library
 set /p "LicenseUrl=License URL (default is empty): "
 echo Creating library mod project...
-dotnet new spacewarpmod-empty -n "%ProjectName%" -M "%ModName%" -A "%Author%" -D "%Description%" -S "%Source%" -V "%Version%" -C "%CheckVersion%" -L "%LicenseUrl%"
+dotnet new spacewarpmod-library -n "%ProjectName%" -M "%ModName%" -A "%Author%" -D "%Description%" -S "%Source%" -V "%Version%" -C "%CheckVersion%" -L "%LicenseUrl%"
 goto setup
 
 :setup
