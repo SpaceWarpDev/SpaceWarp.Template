@@ -61,6 +61,7 @@ xcopy /y "scripts\setup\licenses\%folder%\*" .
 if %notice% == 1 (
     call powershell.exe -ExecutionPolicy RemoteSigned -File "scripts\setup\prepend_notice.ps1"
     echo NOTICE: You should include the license notice in all of your mod's source code files, see you main plugin class file for an example.
+    del NOTICE
 )
 goto end
 
