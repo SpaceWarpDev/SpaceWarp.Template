@@ -56,6 +56,6 @@
               DestinationFolder="$(KSP2DIR)/BepInEx/plugins/$(ProjectName)/%(RecursiveDir)"/>
 
         <Message Text="Deploy plugin and run game" Condition="$(ConfigurationName) == DeployAndRun"/>
-        <Exec Command="&quot;$(KSP2DIR)/KSP2_x64.exe&quot;" Condition="$(ConfigurationName) == DeployAndRun"/>
+        <Exec Command="powershell &quot;start-process &quot;&quot;$(KSP2DIR)\KSP2_x64.exe&quot;&quot;&quot;" Condition="$(ConfigurationName) == DeployAndRun"/>
     </Target>
 </Project>
