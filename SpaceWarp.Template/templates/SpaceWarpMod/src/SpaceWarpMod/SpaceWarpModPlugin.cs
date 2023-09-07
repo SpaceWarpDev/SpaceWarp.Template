@@ -29,6 +29,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
     // AppBar button IDs
     private const string ToolbarFlightButtonID = "BTN-SpaceWarpModFlight";
     private const string ToolbarOabButtonID = "BTN-SpaceWarpModOAB";
+    private const string ToolbarKscButtonID = "BTN-SpaceWarpModKSC";
 
     // Singleton instance of the plugin class
     public static SpaceWarpModPlugin Instance { get; set; }
@@ -63,6 +64,17 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
             {
                 _isWindowOpen = isOpen;
                 GameObject.Find(ToolbarOabButtonID)?.GetComponent<UIValue_WriteBool_Toggle>()?.SetValue(isOpen);
+            }
+        );
+
+        // Register KSC AppBar Button
+        Appbar.RegisterKSCAppButton(
+            ModName,
+            ToolbarKscButtonID,
+            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
+            () =>
+            {
+                _isWindowOpen = !_isWindowOpen;
             }
         );
 
