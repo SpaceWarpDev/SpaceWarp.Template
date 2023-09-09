@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <PackageType>Template</PackageType>
-        <PackageVersion>1.4.0.3</PackageVersion>
+        <PackageVersion>1.4.3.1</PackageVersion>
         <PackageId>SpaceWarp.Template</PackageId>
         <Title>SpaceWarp Mod Template</Title>
         <Authors>munix</Authors>
@@ -28,6 +28,7 @@
         <None Include="..\LICENSE" Pack="true" PackagePath="" />
     </ItemGroup>
     <Target Name="CopyPackage" AfterTargets="Pack">
-        <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg" DestinationFiles="$(PackageOutputPath)\$(PackageId).nupkg" />
+        <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg"
+              DestinationFiles="$(PackageOutputPath)\$(PackageId).nupkg" />
     </Target>
 </Project>
