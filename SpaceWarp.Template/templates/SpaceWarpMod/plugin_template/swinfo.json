@@ -1,5 +1,5 @@
 {
-  "spec": "1.3",
+  "spec": "2.0",
   "mod_id": "SpaceWarpMod",
   "author": "swinfo_author",
   "name": "swinfo_name",
@@ -8,14 +8,14 @@
   "version": "swinfo_version",
   "version_check": "swinfo_checkversion",
   "ksp2_version": {
-    "min": "0.1.4",
+    "min": "0.1.5",
     "max": "*"
   },
   "dependencies": [
     {
       "id": "com.github.x606.spacewarp",
       "version": {
-        "min": "1.4.3",
+        "min": "1.5.2",
         "max": "*"
       }
     }

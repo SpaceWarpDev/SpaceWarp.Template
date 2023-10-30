@@ -17,7 +17,7 @@ namespace SpaceWarpMod;
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
 {
-    // These are useful in case some other mod wants to add a dependency to this one
+    // Useful in case some other mod wants to use this mod a dependency
     [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
