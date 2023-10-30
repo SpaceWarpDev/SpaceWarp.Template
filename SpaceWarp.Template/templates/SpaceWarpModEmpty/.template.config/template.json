@@ -58,7 +58,7 @@
         },
         "CheckVersion": {
             "type": "parameter",
-            "description": "URL to the raw .csproj file in your main branch to check for updates",
+            "description": "URL to the raw swinfo.json file in your main branch to check for updates",
             "datatype": "text",
             "replaces": "swinfo_checkversion",
             "defaultValue": ""

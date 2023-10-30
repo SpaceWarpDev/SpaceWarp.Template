@@ -4,17 +4,16 @@ This project serves as a SpaceWarp mod project template for the .NET CLI and Vis
 
 ## Requirements
 
-- **.NET SDK** - .NET 6+ is required for all the features of the templates to be supported
+- **.NET SDK** - .NET 7 is required for all the features of the templates to be supported
 
 ### Optional
 
 - **Visual Studio 2022** - Visual Studio 2022 is the required version if you want to use the template with it
-- **JetBrains Rider** - The template can also be used with JetBrains Rider (tested with version 2023.1.1)
+- **JetBrains Rider** - The template can also be used with JetBrains Rider (tested with version 2023.2)
 
 ## Installation
 
-For .NET 7 SDK, you can use the commands as they are written below. **For .NET 6 SDK,
-you need to replace `install` with `--install`.**
+For .NET 7 SDK, you can use the commands as they are written below.
 
 You can see the SDK version currently in use and all SDK versions
 installed by running `dotnet --info`.
@@ -54,12 +53,6 @@ To update the template to the latest version in .NET 7 SDK, run the following co
 dotnet new update
 ```
 
-When using .NET 6 SDK, use the following command instead:
-
-```console
-dotnet new --update-apply
-```
-
 ## Template types
 
 The template contains three different types of projects:
@@ -87,7 +80,8 @@ unnecessary example code.
 ### Library mod project
 
 This template creates a library mod project for SpaceWarp. It is pre-configured to automatically generate a NuGet
-package for your mod, which can be used by other mods.
+package for your mod, which can be used by other mods. It contains an additional module project and a preload
+patcher project, with all the necessary setup.
 
 This is the recommended template for modders who want to create a library mod which can be used by other mods.
 
@@ -164,42 +158,39 @@ by simply double-clicking one of the configurations: `build-release.bat`, `build
 
 ### swinfo.json
 
-Since template version 1.2.0.1, your generated project will no longer directly contain a `swinfo.json` file. Instead,
-it will be generated automatically during the build process from the project's properties and the
-`plugin_template/swinfo.tt` file. This means that you no longer have to manually update the `swinfo.json` file when
-you change your project's properties, such as the version.
+The properties in your .csproj file are automatically read from the `swinfo.json` file in your project's
+`plugin_info` folder. This file is used by SpaceWarp mod to display information about your mod and check for updates
+of your mod.
 
-The only properties in the `swinfo.tt` template which require manual edits are `spec` and `dependencies`. All the other
-properties are automatically filled in from your plugin's main .csproj file's properties.
-Following is the table of how individual properties are mapped:
+Here is a list of properties in the `swinfo.json` file and their corresponding .csproj properties:
 
-| swinfo.json property | .csproj property                                             |
-|----------------------|--------------------------------------------------------------|
-| mod_id               | `<ProjectName>`<br>(comes from the name of the .csproj file) |
-| author               | `<Authors>`                                                  |
-| name                 | `<Product>`                                                  |
-| description          | `<Description>`                                              |
-| source               | `<RepositoryUrl>`                                            |
-| version              | `<Version>`                                                  |
-| version_check        | `<VersionCheckUrl>`                                          |
-| ksp2_version.min     | `<Ksp2VersionMin>`                                           |
-| ksp2_version.max     | `<Ksp2VersionMax>`                                           |
+| swinfo.json property | .csproj property  |
+|----------------------|-------------------|
+| mod_id               | `<ModId>`         |
+| author               | `<Authors>`       |
+| name                 | `<Product>`       |
+| description          | `<Description>`   |
+| source               | `<RepositoryUrl>` |
+| version              | `<Version>`       |
+| version_check        | None              |
+| ksp2_version.min     | None              |
+| ksp2_version.max     | None              |
 
 ## Project parameters
 
 When creating your project in either the console or Visual Studio, you are provided a number of parameters.
 They apply to all project types and you can find an overview of all of them and their meanings here:
 
-| Parameter     | Console argument | Short argument | Description                                                                                                                                                                            | Default value              |
-|---------------|------------------|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
-| Project name  | --name           | -n             | The name of your project in PascalCase                                                                                                                                                 | `<current directory name>` |
-| ModName       | --ModName        | -M             | The name of your mod                                                                                                                                                                   | `""` _(empty)_             |
-| Author        | --Author         | -A             | The name(s) of the mod's author(s)                                                                                                                                                     | `""` _(empty)_             |
-| Description   | --Description    | -D             | A short description of your mod                                                                                                                                                        | `""` _(empty)_             |
-| Source        | --Source         | -S             | The repository or download location of the mod's source code<br>(for example: https://github.com/author/mod)                                                                           | `""` _(empty)_             |
-| Version       | --Version        | -V             | The mod's initial version                                                                                                                                                              | `1.0.0`                    |
-| Check Version | --CheckVersion   | -C             | URL to the raw .csproj file in your main branch to check for updates<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/src/YourProject/YourProject.csproj) | `""` _(empty)_             |
-| License URL*  | --LicenseUrl     | -L             | URL to the license file of your mod<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/LICENSE)                                                             | `""` _(empty)_             |
+| Parameter     | Console argument | Short argument | Description                                                                                                                                                                     | Default value              |
+|---------------|------------------|----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| Project name  | --name           | -n             | The name of your project in PascalCase                                                                                                                                          | `<current directory name>` |
+| ModName       | --ModName        | -M             | The name of your mod                                                                                                                                                            | `""` _(empty)_             |
+| Author        | --Author         | -A             | The name(s) of the mod's author(s)                                                                                                                                              | `""` _(empty)_             |
+| Description   | --Description    | -D             | A short description of your mod                                                                                                                                                 | `""` _(empty)_             |
+| Source        | --Source         | -S             | The repository or download location of the mod's source code<br>(for example: https://github.com/author/mod)                                                                    | `""` _(empty)_             |
+| Version       | --Version        | -V             | The mod's initial version                                                                                                                                                       | `1.0.0`                    |
+| Check Version | --CheckVersion   | -C             | URL to the raw swinfo.json file in your main branch to check for updates<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/plugin_info/swinfo.json) | `""` _(empty)_             |
+| License URL*  | --LicenseUrl     | -L             | URL to the license file of your mod<br>(for example: https://raw.githubusercontent.com/YourUsername/YourRepo/main/LICENSE)                                                      | `""` _(empty)_             |
 
 &ast;The **License URL** parameter only applies to the **spacewarpmod-library** project type.
 
