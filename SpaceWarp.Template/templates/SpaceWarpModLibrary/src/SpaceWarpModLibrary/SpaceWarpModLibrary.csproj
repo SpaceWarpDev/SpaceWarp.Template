@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <!-- NuGet package configuration -->
-    <PropertyGroup Label="NuGet package configuration">
-        <PackageIcon Label="Optional filename of your NuGet package's icon">icon.png</PackageIcon>
-        <PackageId Label="ID of your NuGet package">$(ProjectName)</PackageId>
-        <!-- For example https://raw.githubusercontent.com/YourUsername/YourRepo/main/LICENSE -->
-        <PackageLicenseUrl Label="URL to the license of your mod">swinfo_license</PackageLicenseUrl>
-        <PackageOutputPath Label="Path to the NuGet package output">../../nuget</PackageOutputPath>
-        <PackageProjectUrl Label="Optional URL to your project's website (e.g. forum post)">swinfo_source</PackageProjectUrl>
-        <PackageReadmeFile Label="Filename of your README file">README.md</PackageReadmeFile>
-        <PackageTags Label="Optional tags of your NuGet package">ksp2;mod;library</PackageTags>
-    </PropertyGroup>
-    <Target Name="IncludeAllFilesInTargetDir" AfterTargets="Build">
-        <ItemGroup>
-            <None Label="Optional path to NuGet package's icon" Include="$(SolutionDir)/images/icon.png" Pack="true" PackagePath="/"/>
-            <None Label="Path to LICENSE file" Include="$(SolutionDir)/LICENSE" Pack="true" PackagePath="/"/>
-            <None Label="Path to README file" Include="$(SolutionDir)/README.md" Pack="true" PackagePath="/"/>
-            <None Label="Path to the target build" Include="$(TargetDir)/**" Pack="true" PackagePath="/lib/$(TargetFramework)"/>
-        </ItemGroup>
-    </Target>
-
-    <!-- Project references -->
+    <!-- References -->
     <ItemGroup Label="DLL file references">
         <!-- Add references to any DLL files you want to use in your mod here -->
     </ItemGroup>
@@ -31,8 +11,13 @@
         <PackageReference Include="BepInEx.Core" Version="5.*"/>
         <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*"/>
         <PackageReference Include="HarmonyX" Version="2.10.1"/>
-        <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.4" PrivateAssets="all"/>
-        <PackageReference Include="SpaceWarp" Version="1.4.0"/>
-        <PackageReference Include="UnityEngine.Modules" Version="2020.3.33.1"/>
+        <PackageReference Include="KerbalSpaceProgram2.GameLibs" Version="0.1.5" PrivateAssets="all"/>
+        <PackageReference Include="SpaceWarp" Version="1.5.2"/>
+        <PackageReference Include="UnityEngine.Modules" Version="2022.3.5"/>
+    </ItemGroup>
+    <ItemGroup Label="Project references">
+        <!-- Add references to any other projects in your solution that you want to use in your mod here -->
+        <ProjectReference Include="$(SolutionDir)/src/SpaceWarpModLibrary.AnotherModule/SpaceWarpModLibrary.AnotherModule.csproj" Private="false"/>
+        <ProjectReference Include="$(SolutionDir)/src/SpaceWarpModLibrary.PreloadPatcher/SpaceWarpModLibrary.PreloadPatcher.csproj" Private="false"/>
     </ItemGroup>
 </Project>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup Label="DLL file references">
+        <!-- Add references to any DLL files you want to use in your mod here -->
+    </ItemGroup>
+    <ItemGroup Label="NuGet package references">
+        <!-- Add references to any NuGet packages you want to use in your mod here -->
+        <PackageReference Include="JetBrains.Annotations" Version="2023.2.0" PrivateAssets="all"/>
+    </ItemGroup>
+    <ItemGroup Label="Project references">
+        <!-- Add references to any other projects in your solution that you want to use in your mod here -->
+    </ItemGroup>
+</Project>

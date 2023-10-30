@@ -5,7 +5,8 @@
         "SpaceWarp",
         "KSP 2",
         "Kerbal Space Program 2",
-        "Mod"
+        "Mod",
+        "Library"
     ],
     "identity": "SpaceWarpModLibrary",
     "name": "SpaceWarp Library Mod Project",
@@ -18,7 +19,9 @@
     },
     "guids": [
         "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC",
-        "9546D588-26B7-4CF5-AEF0-17676A5F1CE0"
+        "9546D588-26B7-4CF5-AEF0-17676A5F1CE0",
+        "95FFBD13-CDB6-4568-B6B8-65C0B199CE87",
+        "5DC6D745-B3CA-49CD-A417-B714957F479F"
     ],
     "symbols": {
         "ModName": {

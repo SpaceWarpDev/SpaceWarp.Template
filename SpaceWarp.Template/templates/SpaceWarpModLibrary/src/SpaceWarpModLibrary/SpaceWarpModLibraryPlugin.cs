@@ -5,16 +5,29 @@ using SpaceWarp.API.Mods;
 
 namespace SpaceWarpModLibrary;
 
+/// <summary>
+/// Main plugin class for the mod.
+/// </summary>
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class SpaceWarpModLibraryPlugin : BaseSpaceWarpPlugin
 {
-    // These are useful in case some other mod wants to add a dependency to this one
+    /// <summary>
+    /// The GUID of the mod.
+    /// </summary>
     [PublicAPI] public const string ModGuid = MyPluginInfo.PLUGIN_GUID;
+    /// <summary>
+    /// The name of the mod.
+    /// </summary>
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
+    /// <summary>
+    /// The version of the mod.
+    /// </summary>
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
-    // Singleton instance of the plugin class
+    /// <summary>
+    /// Singleton instance of the mod.
+    /// </summary>
     public static SpaceWarpModLibraryPlugin Instance { get; set; }
 
     /// <summary>

@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWarpModLibrary", "src/SpaceWarpModLibrary/SpaceWarpModLibrary.csproj", "{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWarpModLibrary.PreloadPatcher", "src/SpaceWarpModLibrary.PreloadPatcher/SpaceWarpModLibrary.PreloadPatcher.csproj", "{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWarpModLibrary.AnotherModule", "src/SpaceWarpModLibrary.AnotherModule/SpaceWarpModLibrary.AnotherModule.csproj", "{5DC6D745-B3CA-49CD-A417-B714957F479F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,21 @@ Global
 		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
 		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
 		{9546D588-26B7-4CF5-AEF0-17676A5F1CE0}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{95FFBD13-CDB6-4568-B6B8-65C0B199CE87}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{5DC6D745-B3CA-49CD-A417-B714957F479F}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
 	EndGlobalSection
 EndGlobal
