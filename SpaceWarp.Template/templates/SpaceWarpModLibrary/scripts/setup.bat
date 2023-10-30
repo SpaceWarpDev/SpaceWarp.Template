@@ -8,6 +8,9 @@ if /i "%CURR_DIR_NAME%"=="scripts" (
     cd ..
 )
 
+:: Rename Package.nuspec.txt to Package.nuspec
+ren Package.nuspec.txt Package.nuspec
+
 :: Inform the user about the PowerShell module check and installation, then wait for a key press to continue
 echo The Microsoft.PowerShell.Archive module will be checked for updates due to a bug that affects zipping of mod releases, breaking their CKAN installation.
 echo The script will open in a new windows and request administrative privileges if there is a required package update. Please allow it to proceed until it closes itself.
