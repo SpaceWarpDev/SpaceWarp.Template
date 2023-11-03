@@ -133,9 +133,6 @@ There are two options how to generate a project using this template:
 
 ## Building a project
 
-It is necessary to always have the `<KSP2 Root>/KSP2_x64_Data/Managed/Assembly-CSharp.dll` file copied into the
-`<solution_root>/external_dlls/` folder before you can build your project.
-
 Four build configurations are defined: **Debug**, **Release**, **Deploy** and **DeployAndRun**.
 Building any of them will create a folder with the name of the configuration in the project root. This will create
 the complete folder structure for you, i.e. `BepInEx/plugins/YourMod/...`, and all the folders and files necessary
