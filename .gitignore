@@ -7,6 +7,7 @@
 *.DotSettings
 mono_crash.*
 .idea/
+build/
 dist/
 nuget/
 SpaceWarp.Template/[Dd]ebug/

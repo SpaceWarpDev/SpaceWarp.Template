@@ -20,15 +20,34 @@
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/jan-bures/SpaceWarp.Template/</RepositoryUrl>
         <NoDefaultExcludes>true</NoDefaultExcludes>
+        <BuildOutputPath>$(SolutionDir)build/templates</BuildOutputPath>
     </PropertyGroup>
+
+    <!-- New target to copy contents from templates to build -->
+    <Target Name="Prepack" BeforeTargets="PrepareForPack">
+        <!-- Ensure the build directory exists -->
+        <MakeDir Directories="$(BuildOutputPath)" />
+
+        <!-- Copy contents of templates to build -->
+        <ItemGroup>
+            <TemplateFiles Include="templates/**/*" Exclude="templates/**/bin/**;templates/**/obj/**" />
+        </ItemGroup>
+        <Copy SourceFiles="@(TemplateFiles)" DestinationFolder="$(BuildOutputPath)%(RecursiveDir)" />
+
+        <!-- Copy common files to each top-level subdirectory in build using PowerShell -->
+        <Exec Command="powershell -NoProfile -Command &quot;Get-ChildItem -Path '$(BuildOutputPath)' -Directory | ForEach-Object { Copy-Item -Path 'common/*' -Destination $_.FullName -Recurse -Force }&quot;" />
+    </Target>
+
+    <!-- Update the ItemGroup to include content from the build folder for packaging -->
     <ItemGroup>
-        <Content Include="templates\**\*" Exclude="templates\**\bin\**;templates\**\obj\**" />
-        <Compile Remove="**\*" />
-        <None Include="..\README.md" Pack="true" PackagePath="\" />
-        <None Include="..\LICENSE" Pack="true" PackagePath="" />
+        <Content Include="$(BuildOutputPath)/**/*" Exclude="$(BuildOutputPath)/**/bin/**;$(BuildOutputPath)/**/obj/**" Pack="true" PackagePath="content" />
+        <Compile Remove="**/*" />
+        <None Include="../README.md" Pack="true" PackagePath="" />
+        <None Include="../LICENSE" Pack="true" PackagePath="" />
     </ItemGroup>
+
     <Target Name="CopyPackage" AfterTargets="Pack">
-        <Copy SourceFiles="$(PackageOutputPath)\$(PackageId).$(PackageVersion).nupkg"
-              DestinationFiles="$(PackageOutputPath)\$(PackageId).nupkg" />
+        <Copy SourceFiles="$(PackageOutputPath)/$(PackageId).$(PackageVersion).nupkg"
+              DestinationFiles="$(PackageOutputPath)/$(PackageId).nupkg" />
     </Target>
 </Project>
