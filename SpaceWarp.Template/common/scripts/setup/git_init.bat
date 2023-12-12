@@ -12,5 +12,6 @@ if %errorlevel% == 2 goto end
 :git
 
 git init --initial-branch=main
+git add .
 
 :end
