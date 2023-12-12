@@ -15,7 +15,7 @@
     {
       "id": "com.github.x606.spacewarp",
       "version": {
-        "min": "1.5.2",
+        "min": "1.6.0",
         "max": "*"
       }
     }
