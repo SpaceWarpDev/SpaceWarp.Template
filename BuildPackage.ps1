@@ -7,7 +7,11 @@ $ReplacementsFile = "replacements.ini"
 function Read-IniFile ($filePath) {
     $ini = @{}
     Get-Content $filePath | ForEach-Object {
-        if ($_ -match "([^=]+)=(.*)") {
+        # Remove comments from the line
+        $line = $_ -split '[#;]', 2 | Select-Object -First 1
+
+        # Process if the line contains an '=' character
+        if ($line -match "([^=]+)=(.*)") {
             $name, $value = $matches[1].Trim(), $matches[2].Trim()
             $ini[$name] = $value
         }
@@ -20,7 +24,6 @@ $Replacements = @{}
 
 if (Test-Path $ReplacementsFile) {
     $Replacements = Read-IniFile $ReplacementsFile
-    $Replacements["SpaceWarpTemplateName"] = ""
 } else {
     Write-Error "Replacements file not found. Please ensure that '$ReplacementsFile' exists."
     exit
