@@ -1,52 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <PackageType>Template</PackageType>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <PackageVersion>1.6.0.1</PackageVersion>
         <PackageId>SpaceWarp.Template</PackageId>
         <Title>SpaceWarp Mod Template</Title>
         <Authors>munix</Authors>
         <Description>KSP 2 SpaceWarp mod template</Description>
         <PackageTags>spacewarp ksp ksp2 mod template</PackageTags>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <PackageOutputPath>$(SolutionDir)nuget</PackageOutputPath>
-        <IncludeContentInPack>true</IncludeContentInPack>
-        <IncludeBuildOutput>false</IncludeBuildOutput>
-        <ContentTargetFolders>content</ContentTargetFolders>
-        <NoWarn>$(NoWarn);NU5110;NU5111;NU5128</NoWarn>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/jan-bures/SpaceWarp.Template/</RepositoryUrl>
-        <NoDefaultExcludes>true</NoDefaultExcludes>
-        <BuildOutputPath>$(SolutionDir)build/templates</BuildOutputPath>
+        <RepositoryUrl>https://github.com/SpaceWarp/SpaceWarp.Template</RepositoryUrl>
+        <PackageOutputPath>$(SolutionDir)nuget</PackageOutputPath>
+        <TempNugetPath>$(SolutionDir)temp_nuget/</TempNugetPath>
+        <TemplatesPath>$(TempNugetPath)templates</TemplatesPath>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <Compile Remove="**/*" />
+    </ItemGroup>
 
-    <!-- New target to copy contents from templates to build -->
-    <Target Name="Prepack" BeforeTargets="PrepareForPack">
-        <!-- Ensure the build directory exists -->
-        <MakeDir Directories="$(BuildOutputPath)" />
+    <!-- Target to pack the NuGet package -->
+    <Target Name="PackNuget" AfterTargets="Build">
+        <Message Text="Creating temporary folder" />
+        <MakeDir Directories="$(TemplatesPath)" />
 
-        <!-- Copy contents of templates to build -->
+        <Message Text="Copying templates to temporary folder" />
         <ItemGroup>
             <TemplateFiles Include="templates/**/*" Exclude="templates/**/bin/**;templates/**/obj/**" />
         </ItemGroup>
-        <Copy SourceFiles="@(TemplateFiles)" DestinationFolder="$(BuildOutputPath)%(RecursiveDir)" />
+        <Copy SourceFiles="@(TemplateFiles)" DestinationFolder="$(TemplatesPath)/%(RecursiveDir)" />
 
-        <!-- Copy common files to each top-level subdirectory in build using PowerShell -->
-        <Exec Command="powershell -NoProfile -Command &quot;Get-ChildItem -Path '$(BuildOutputPath)' -Directory | ForEach-Object { Copy-Item -Path 'common/*' -Destination $_.FullName -Recurse -Force }&quot;" />
-    </Target>
+        <Message Text="Copying common files to temporary folder" />
+        <Exec Command="powershell -NoProfile -Command &quot;Get-ChildItem -Path '$(TemplatesPath)' -Directory | ForEach-Object { Copy-Item -Path 'common/*' -Destination $_.FullName -Recurse -Force }&quot;" />
+        
+        <Message Text="Packing NuGet package" />
+        <Exec Command="nuget pack &quot;$(SolutionDir)/Package.nuspec&quot; -NoDefaultExcludes -OutputDirectory &quot;$(SolutionDir)/nuget&quot; -Properties NoWarn=NU5125;id=&quot;$(PackageId)&quot;;tags=&quot;$(PackageTags)&quot;;title=&quot;$(Title)&quot;;version=&quot;$(PackageVersion)&quot;;authors=&quot;$(Authors)&quot;;description=&quot;$(Description)&quot;;repositoryType=&quot;$(RepositoryType)&quot;;repositoryUrl=&quot;$(RepositoryUrl)&quot;" />
 
-    <!-- Update the ItemGroup to include content from the build folder for packaging -->
-    <ItemGroup>
-        <Content Include="$(BuildOutputPath)/**/*" Exclude="$(BuildOutputPath)/**/bin/**;$(BuildOutputPath)/**/obj/**" Pack="true" PackagePath="content" />
-        <Compile Remove="**/*" />
-        <None Include="../README.md" Pack="true" PackagePath="" />
-        <None Include="../LICENSE" Pack="true" PackagePath="" />
-    </ItemGroup>
+        <Message Text="Removing temporary folder" />
+        <RemoveDir Directories="$(SolutionDir)/temp_nuget" />
 
-    <Target Name="CopyPackage" AfterTargets="Pack">
+        <Message Text="Copying NuGet package to output folder" />
         <Copy SourceFiles="$(PackageOutputPath)/$(PackageId).$(PackageVersion).nupkg"
               DestinationFiles="$(PackageOutputPath)/$(PackageId).nupkg" />
     </Target>
