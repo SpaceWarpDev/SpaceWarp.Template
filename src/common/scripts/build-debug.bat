@@ -1,2 +1,2 @@
 @echo off
-dotnet build "../SpaceWarpMod.sln" -c Debug
+dotnet build "../SpaceWarpTemplateName.sln" -c Debug
