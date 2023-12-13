@@ -1,27 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
     <metadata>
-        <id>$id$</id>
-        <version>$version$</version>
-        <authors>$authors$</authors>
-        <title>$title$</title>
+        <id>SpaceWarp.Template</id>
+        <version>1.6.0.1</version>
+        <authors>munix</authors>
+        <title>SpaceWarp Mod Template</title>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>$description$</description>
-        <tags>$tags$</tags>
-        <projectUrl>$repositoryUrl$</projectUrl>
-        <repository type="$repositoryType$" url="$repositoryUrl$" />
+        <description>KSP 2 SpaceWarp mod template</description>
+        <tags>spacewarp ksp ksp2 mod template</tags>
+        <projectUrl>https://github.com/SpaceWarp/SpaceWarp.Template</projectUrl>
+        <repository type="git" url="https://github.com/SpaceWarp/SpaceWarp.Template" />
         <license type="file">LICENSE</license>
         <readme>README.md</readme>
         <packageTypes>
             <packageType name="Template" />
         </packageTypes>
-        <dependencies>
-            <group targetFramework=".NETStandard2.1" />
-        </dependencies>
     </metadata>
     <files>
         <file src="README.md" target="" />
         <file src="LICENSE" target="LICENSE" />
-        <file src="temp_nuget\**\*" target="content/" />
+        <file src="$buildDir$\**\*" target="content/" />
     </files>
 </package>

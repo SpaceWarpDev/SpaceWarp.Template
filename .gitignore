@@ -10,16 +10,3 @@ mono_crash.*
 build/
 dist/
 nuget/
-SpaceWarp.Template/[Dd]ebug/
-SpaceWarp.Template/[Dd]ebugPublic/
-SpaceWarp.Template/[Rr]elease/
-SpaceWarp.Template/[Rr]eleases/
-SpaceWarp.Template/x64/
-SpaceWarp.Template/x86/
-SpaceWarp.Template/[Aa][Rr][Mm]/
-SpaceWarp.Template/[Aa][Rr][Mm]64/
-SpaceWarp.Template/bld/
-SpaceWarp.Template/[Bb]in/
-SpaceWarp.Template/[Oo]bj/
-SpaceWarp.Template/[Ll]og/
-SpaceWarp.Template/[Ll]ogs/
