@@ -22,6 +22,9 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModName = MyPluginInfo.PLUGIN_NAME;
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
+    // Singleton instance of the plugin class
+    [PublicAPI] public static SpaceWarpModPlugin Instance { get; set; }
+
     // UI window state
     private bool _isWindowOpen;
     private Rect _windowRect;
@@ -30,9 +33,6 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
     private const string ToolbarFlightButtonID = "BTN-SpaceWarpModFlight";
     private const string ToolbarOabButtonID = "BTN-SpaceWarpModOAB";
     private const string ToolbarKscButtonID = "BTN-SpaceWarpModKSC";
-
-    // Singleton instance of the plugin class
-    public static SpaceWarpModPlugin Instance { get; set; }
 
     /// <summary>
     /// Runs when the mod is first initialized.
@@ -47,7 +47,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
         Appbar.RegisterAppButton(
             ModName,
             ToolbarFlightButtonID,
-            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
+            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
             isOpen =>
             {
                 _isWindowOpen = isOpen;
@@ -59,7 +59,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
         Appbar.RegisterOABAppButton(
             ModName,
             ToolbarOabButtonID,
-            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
+            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
             isOpen =>
             {
                 _isWindowOpen = isOpen;
@@ -71,7 +71,7 @@ public class SpaceWarpModPlugin : BaseSpaceWarpPlugin
         Appbar.RegisterKSCAppButton(
             ModName,
             ToolbarKscButtonID,
-            AssetManager.GetAsset<Texture2D>($"{Info.Metadata.GUID}/images/icon.png"),
+            AssetManager.GetAsset<Texture2D>($"{ModGuid}/images/icon.png"),
             () =>
             {
                 _isWindowOpen = !_isWindowOpen;
