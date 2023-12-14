@@ -7,7 +7,7 @@
         <title>SpaceWarp Mod Template</title>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>KSP 2 SpaceWarp mod template</description>
-        <tags>spacewarp ksp ksp2 mod template</tags>
+        <tags>spacewarp ksp2 mod template</tags>
         <projectUrl>https://github.com/SpaceWarp/SpaceWarp.Template</projectUrl>
         <repository type="git" url="https://github.com/SpaceWarp/SpaceWarp.Template" />
         <license type="file">LICENSE</license>

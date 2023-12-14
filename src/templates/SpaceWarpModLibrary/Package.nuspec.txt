@@ -7,7 +7,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <licenseUrl>swinfo_license</licenseUrl>
         <description>$description$</description>
-        <tags>ksp ksp2 mod library</tags>
+        <tags>ksp2 mod library</tags>
         <projectUrl>$repositoryUrl$</projectUrl>
         <repository type="$repositoryType$" url="$repositoryUrl$" />
         <readme>README.md</readme>
