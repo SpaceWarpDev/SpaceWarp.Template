@@ -10,7 +10,7 @@
 
         <!-- Copying general files to build directory -->
         <ItemGroup Label="Plugin template folder to be copied">
-            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*"/>
+            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*" Exclude="$(SolutionDir)/**/.gitkeep"/>
         </ItemGroup>
         <Message Text="Copying plugin folder to build directory"/>
         <Copy SourceFiles="@(PluginTemplate)"

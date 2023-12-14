@@ -6,7 +6,7 @@
         <MakeDir Directories="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
 
         <ItemGroup Label="Plugin template folder to be copied">
-            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*"/>
+            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*" Exclude="$(SolutionDir)/**/.gitkeep"/>
         </ItemGroup>
         <Message Text="Copying plugin folder to build directory"/>
         <Copy SourceFiles="@(PluginTemplate)"
