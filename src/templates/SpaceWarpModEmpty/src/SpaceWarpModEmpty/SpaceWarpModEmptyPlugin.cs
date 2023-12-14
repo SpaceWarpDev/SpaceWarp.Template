@@ -15,7 +15,7 @@ public class SpaceWarpModEmptyPlugin : BaseSpaceWarpPlugin
     [PublicAPI] public const string ModVer = MyPluginInfo.PLUGIN_VERSION;
 
     // Singleton instance of the plugin class
-    public static SpaceWarpModEmptyPlugin Instance { get; set; }
+    [PublicAPI] public static SpaceWarpModEmptyPlugin Instance { get; set; }
 
     /// <summary>
     /// Runs when the mod is first initialized.

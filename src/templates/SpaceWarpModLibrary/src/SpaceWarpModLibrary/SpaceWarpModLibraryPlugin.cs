@@ -28,7 +28,7 @@ public class SpaceWarpModLibraryPlugin : BaseSpaceWarpPlugin
     /// <summary>
     /// Singleton instance of the mod.
     /// </summary>
-    public static SpaceWarpModLibraryPlugin Instance { get; set; }
+    [PublicAPI] public static SpaceWarpModLibraryPlugin Instance { get; set; }
 
     /// <summary>
     /// Runs when the mod is first initialized.
