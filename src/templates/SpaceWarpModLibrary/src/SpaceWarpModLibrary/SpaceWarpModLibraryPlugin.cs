@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using System.Reflection;
+using BepInEx;
 using JetBrains.Annotations;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
@@ -38,5 +39,16 @@ public class SpaceWarpModLibraryPlugin : BaseSpaceWarpPlugin
         base.OnInitialized();
 
         Instance = this;
+
+        // Load the SpaceWarpModLibrary.AnotherModule project assembly
+        var currentFolder = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory!.FullName;
+        Assembly.LoadFrom(Path.Combine(currentFolder, "SpaceWarpModLibrary.AnotherModule.dll"));
+
+        // Load any 3rd party assemblies from the "lib" folder
+        var libFolder = Path.Combine(currentFolder, "lib");
+        foreach (var file in Directory.GetFiles(libFolder, "*.dll"))
+        {
+            Assembly.LoadFrom(file);
+        }
     }
 }
