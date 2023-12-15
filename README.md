@@ -4,16 +4,17 @@ This project serves as a SpaceWarp mod project template for the .NET CLI and Vis
 
 ## Requirements
 
-- **.NET SDK** - .NET 7 is required for all the features of the templates to be supported
+- **.NET SDK** - .NET 7+ is required for all the features of the templates to be supported
 
 ### Optional
 
 - **Visual Studio 2022** - Visual Studio 2022 is the required version if you want to use the template with it
-- **JetBrains Rider** - The template can also be used with JetBrains Rider (tested with version 2023.2)
+- **JetBrains Rider** - The template can also be used with JetBrains Rider (tested with version 2023.3)
+- **Unity 2022.3.5f1** - Needed to build projects based on the **General mod project with UI** template
 
 ## Installation
 
-For .NET 7 SDK, you can use the commands as they are written below.
+For .NET 7+ SDK, you can use the commands as they are written below.
 
 You can see the SDK version currently in use and all SDK versions
 installed by running `dotnet --info`.
@@ -67,6 +68,18 @@ This is the recommended template for beginners who want to get familiar with KSP
 
 **The template is available under the name `spacewarpmod`**.
 
+### General mod project with UI
+
+This template creates a general mod project for SpaceWarp. It contains some example code (such as creating a window
+using the [UITK for KSP2](https://github.com/UitkForKsp2/UitkForKsp2) library, registering app bar buttons and setting
+up BepInEx configuration) to get you started.
+
+It also includes a Unity project set up with everything needed to create UIs in the UI Toolkit Builder.
+
+This is the recommended template for beginners who want to get familiar with KSP 2 modding.
+
+**The template is available under the name `spacewarpmod-ui`**.
+
 ### Empty mod project
 
 This template creates an empty mod project for SpaceWarp. It contains no example code and is meant to be used by more
@@ -111,7 +124,7 @@ There are two options how to generate a project using this template:
    over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.<br>
    **Make sure that "Place solution and project in the same directory" is checked.**
    ![Step 5](https://i.imgur.com/g5mkGSp.png)
-6. Open `cmd` in the project directory and run `scripts\setup.bat`. This will guide you through the process of
+6. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process of
    finishing the project setup.
 7. Rebuild the solution once for all references to be resolved  
    ![Step 8](https://i.imgur.com/MeBZBbD.png)
@@ -128,7 +141,7 @@ There are two options how to generate a project using this template:
 
    Replace `<project-type>` with one of the three project types listed in the **[Template types](#template-types)**
    section.
-3. Open `cmd` in the project directory and run `scripts\setup.bat`. This will guide you through the process of
+3. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process of
    finishing the project setup.
 
 ## Building a project
@@ -152,6 +165,19 @@ If you are using the **DeployAndRun** configuration, the game will be started au
 For Windows users, batch scripts are included in the `scripts` folder to provide an easy way to build the project
 by simply double-clicking one of the configurations: `build-release.bat`, `build-debug.bat`, `build-deploy.bat` and
 `build-run.bat`. Otherwise you can use your IDE or the .NET CLI to build the project.
+
+### Building the UI project
+The **General mod project with UI** template includes a Unity project, which you can find in
+`YourMod/src/YourMod.Unity/YourMod.Unity`.
+
+To build the asset bundle needed to display the UI, open the project with Unity, make any desired changes to the UI
+in the `Assets/UI` folder, and then go to the top menu and click on `Assets->Build AssetBundles`. This will build
+all asset bundles into the `Assets/AssetBundles` folder.
+
+Next, copy the built bundle (the default name of the file is `yourproject_ui.bundle`) to the folder 
+`YourMod/plugin_template/assets/bundles`. Now the C# project can be built as explained above.
+
+**Note:** You will need to repeat this process everytime you make changes to the UI files in Unity.
 
 ### swinfo.json
 
