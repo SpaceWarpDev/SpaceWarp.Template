@@ -1,0 +1,77 @@
+{
+    "$schema": "https://json.schemastore.org/template",
+    "author": "munix",
+    "classifications": [
+        "SpaceWarp",
+        "KSP 2",
+        "Kerbal Space Program 2",
+        "Mod"
+    ],
+    "identity": "SpaceWarpModUI",
+    "name": "SpaceWarp UI Mod Project",
+    "shortName": "spacewarpmod-ui",
+    "sourceName": "SpaceWarpModUI",
+    "preferNameDirectory": true,
+    "tags": {
+        "language": "C#",
+        "type": "solution"
+    },
+    "guids": [
+        "FAE04EC0-301F-11D3-BF4B-00C04F79EFBC",
+        "9546D588-26B7-4CF5-AEF0-17676A5F1CE0",
+        "95FFBD13-CDB6-4568-B6B8-65C0B199CE87",
+        "5DC6D745-B3CA-49CD-A417-B714957F479F"
+    ],
+    "symbols": {
+        "ModName": {
+            "type": "parameter",
+            "description": "Mod name",
+            "datatype": "text",
+            "replaces": "swinfo_name",
+            "defaultValue": ""
+        },
+        "Author": {
+            "type": "parameter",
+            "description": "Mod authors (comma-separated)",
+            "datatype": "text",
+            "replaces": "swinfo_author",
+            "defaultValue": ""
+        },
+        "Description": {
+            "type": "parameter",
+            "description": "Mod description",
+            "datatype": "text",
+            "replaces": "swinfo_description",
+            "defaultValue": ""
+        },
+        "Source": {
+            "type": "parameter",
+            "description": "Mod source code repository",
+            "datatype": "text",
+            "replaces": "swinfo_source",
+            "defaultValue": ""
+        },
+        "Version": {
+            "type": "parameter",
+            "description": "Mod version",
+            "datatype": "text",
+            "replaces": "swinfo_version",
+            "defaultValue": "1.0.0"
+        },
+        "CheckVersion": {
+            "type": "parameter",
+            "description": "URL to the raw swinfo.json file in your main branch to check for updates",
+            "datatype": "text",
+            "replaces": "swinfo_checkversion",
+            "defaultValue": ""
+        },
+        "CreatedYear": {
+            "type": "generated",
+            "generator": "now",
+            "parameters": {
+                "format": "yyyy"
+            },
+            "replaces": "2023"
+        }
+    }
+}

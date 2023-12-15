@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+    <Target Label="Post build events" Name="PostBuild" AfterTargets="PostBuildEvent">
+        <!-- Cleanup of older builds -->
+        <Message Text="Cleaning up previous build directory"/>
+        <RemoveDir Directories="$(SolutionDir)/dist/$(ConfigurationName)"/>
+        <MakeDir Directories="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
+
+        <!-- Copying general files to build directory -->
+        <ItemGroup Label="Plugin template folder to be copied">
+            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*" Exclude="$(SolutionDir)/**/.gitkeep"/>
+        </ItemGroup>
+        <Message Text="Copying plugin folder to build directory"/>
+        <Copy SourceFiles="@(PluginTemplate)"
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/%(RecursiveDir)"/>
+
+        <Message Text="Copying LICENSE and README to build directory"/>
+        <Copy Condition="Exists('$(SolutionDir)/LICENSE')"
+              SourceFiles="$(SolutionDir)/LICENSE"
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
+        <Copy Condition="Exists('$(SolutionDir)/README.md')"
+              SourceFiles="$(SolutionDir)/README.md"
+              DestinationFiles="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)/README.txt"/>
+
+        <!-- Copying compiled plugin to build directory -->
+        <Message Text="Copying mod DLL to build directory"/>
+        <ItemGroup Label="Plugin DLLs to be copied">
+            <PluginDLLs Include="$(PluginBinPath)/**/*.dll"/>
+        </ItemGroup>
+        <Copy SourceFiles="@(PluginDLLs)"
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
+
+        <Message Text="Copying mod PDB to build directory"
+                 Condition="$(ConfigurationName) == Debug Or $(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
+        <ItemGroup Label="Plugin PDBs to be copied">
+            <PluginPDBs Include="$(PluginBinPath)/**/*.pdb"/>
+        </ItemGroup>
+        <Copy Condition="$(ConfigurationName) == Debug Or $(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
+              SourceFiles="@(PluginPDBs)"
+              DestinationFolder="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/$(ProjectName)"/>
+
+        <!-- Compressing build directory for release -->
+        <Message Text="Compressing built plugin folder" Condition="$(ConfigurationName) == Release"/>
+        <Delete Condition="$(ConfigurationName) == Release"
+                Files="$(SolutionDir)/dist/$(SolutionName)-$(Version).zip"/>
+        <Exec Condition="$(ConfigurationName) == Release"
+              Command="powershell Compress-Archive -Path '$(SolutionDir)/dist/$(ConfigurationName)/BepInEx' -DestinationPath '$(SolutionDir)/dist/$(SolutionName)-$(Version).zip'"/>
+
+        <!-- Deploying plugin to game folder -->
+        <Message Text="Clean up the game's plugin folder" Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
+        <RemoveDir Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
+                   Directories="$(KSP2DIR)/BepInEx/plugins/$(ProjectName)"/>
+        <MakeDir Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
+                 Directories="$(KSP2DIR)/BepInEx/plugins/$(ProjectName)"/>
+
+        <ItemGroup Label="Dist folder to be copied">
+            <DistFolder Include="$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/**/*.*"/>
+        </ItemGroup>
+        <Message Text="Deploy plugin to game folder"
+                 Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>
+        <Copy Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"
+              SourceFiles="@(DistFolder)"
+              DestinationFolder="$(KSP2DIR)/BepInEx/%(RecursiveDir)"/>
+
+        <!-- Run game after deploy -->
+        <Message Text="Deploy plugin and run game" Condition="$(ConfigurationName) == DeployAndRun"/>
+        <Exec Command="powershell &quot;start-process &quot;&quot;$(KSP2DIR)\KSP2_x64.exe&quot;&quot;&quot;" Condition="$(ConfigurationName) == DeployAndRun"/>
+
+        <OnError ExecuteTargets="Cleanup"/>
+    </Target>
+</Project>
+

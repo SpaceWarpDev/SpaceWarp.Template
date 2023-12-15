@@ -1,0 +1,25 @@
+.root {
+    max-width: 600px;
+    max-height: 400px;
+}
+
+#title-bar {
+    justify-content: space-between;
+}
+
+#say-hello-button {
+    margin-top: 16px;
+}
+
+#greeting-label {
+    display: none;
+}
+
+#icon {
+    width: 32px;
+    height: 32px;
+    align-self: center;
+    background-image: url('project://database/Assets/Images/icon.png?fileID=21300000&guid=7ed5cdb1dc1b4730bdb0f8096d09dd9d&type=3#icon');
+    -unity-background-image-tint-color: rgb(100, 141, 250);
+    margin-bottom: 16px;
+}

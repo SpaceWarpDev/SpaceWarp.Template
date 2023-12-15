@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/MyFirstWindow/MyFirstWindow.uss?fileID=7433441132597879392&amp;guid=f49119c0dc6aec7469a0374f7f606ceb&amp;type=3#MyFirstWindow" />
+    <ui:VisualElement class="root">
+        <ui:VisualElement name="title-bar">
+            <ui:Label text="swinfo_name" />
+            <ui:Button text="×" name="close-button" />
+        </ui:VisualElement>
+        <ui:VisualElement name="content">
+            <ui:VisualElement name="icon" />
+            <ui:TextField picking-mode="Ignore" label="Player name:" name="name-textfield" />
+            <ui:Toggle label="Is it afternoon?" name="noon-toggle" class="toggle" />
+            <ui:Button text="Say hello!" name="say-hello-button" />
+            <ui:Label name="greeting-label" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
