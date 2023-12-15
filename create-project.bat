@@ -4,10 +4,11 @@ echo This script will create a new SpaceWarp mod project.
 echo.
 echo Choose the template you want to use:
 echo 1. General mod (with example code)
-echo 2. Empty mod
-echo 3. Library mod
+echo 2. General mod with UI
+echo 3. Empty mod
+echo 4. Library mod
 echo.
-choice /c 123 /n /m "Choice [1-3]: "
+choice /c 1234 /n /m "Choice [1-4]: "
 
 if %errorlevel% == 0 goto error
 if %errorlevel% == 255 goto error
@@ -47,8 +48,9 @@ set "CheckVersion="
 set /p "CheckVersion=Version check URL (default is empty): "
 
 if %choice% == 1 goto general
-if %choice% == 2 goto empty
-if %choice% == 3 goto library
+if %choice% == 2 goto ui
+if %choice% == 3 goto empty
+if %choice% == 4 goto library
 
 :error
 echo Invalid choice.
@@ -57,6 +59,11 @@ goto end
 :general
 echo Creating general mod project...
 dotnet new spacewarpmod-general -n "%ProjectName%" -M "%ModName%" -A "%Author%" -D "%Description%" -S "%Source%" -V "%Version%" -C "%CheckVersion%"
+goto setup
+
+:ui
+echo Creating UI mod project...
+dotnet new spacewarpmod-ui -n "%ProjectName%" -M "%ModName%" -A "%Author%" -D "%Description%" -S "%Source%" -V "%Version%" -C "%CheckVersion%"
 goto setup
 
 :empty
