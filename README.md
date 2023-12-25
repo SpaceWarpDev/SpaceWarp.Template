@@ -102,7 +102,7 @@ This is the recommended template for modders who want to create a library mod wh
 
 ## Creating a project
 
-There are two options how to generate a project using this template:
+There are multiple options how to generate a project using this template:
 
 ### A. Project generator
 
