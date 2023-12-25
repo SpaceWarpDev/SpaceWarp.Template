@@ -15,10 +15,12 @@
 
     <PropertyGroup Label="Build and namespace configuration">
         <SolutionDir Condition="'$(SolutionDir)'==''">$(MSBuildThisFileDirectory)</SolutionDir>
-        <PluginBinPath>$(SolutionDir)build/bin/plugin</PluginBinPath>
-        <PatcherBinPath>$(SolutionDir)build/bin/patcher</PatcherBinPath>
+        <PluginBinPath>$(SolutionDir)build/bin/plugin/$(Configuration)</PluginBinPath>
+        <PluginObjPath>$(SolutionDir)build/obj/plugin/$(Configuration)</PluginObjPath>
+        <PatcherBinPath>$(SolutionDir)build/bin/patcher/$(Configuration)</PatcherBinPath>
+        <PatcherObjPath>$(SolutionDir)build/obj/patcher/$(Configuration)</PatcherObjPath>
         <BaseOutputPath>$(PluginBinPath)/$(MSBuildProjectName)</BaseOutputPath>
-        <BaseIntermediateOutputPath>$(SolutionDir)build/obj/plugin/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <BaseIntermediateOutputPath>$(PluginObjPath)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
         <AssemblyName>$(MSBuildProjectName)</AssemblyName>
         <RootNamespace>$(AssemblyName)</RootNamespace>
         <Configurations>Debug;Release;Deploy;DeployAndRun</Configurations>

@@ -6,6 +6,6 @@
     <PropertyGroup>
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <BaseOutputPath>$(PatcherBinPath)/$(MSBuildProjectName)</BaseOutputPath>
-        <BaseIntermediateOutputPath>$(SolutionDir)build/obj/patcher/$(MSBuildProjectName)</BaseIntermediateOutputPath>
+        <BaseIntermediateOutputPath>$(PatcherObjPath)/$(MSBuildProjectName)</BaseIntermediateOutputPath>
     </PropertyGroup>
 </Project>
