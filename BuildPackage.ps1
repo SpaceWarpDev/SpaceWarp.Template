@@ -64,10 +64,10 @@ Write-Host "Packing NuGet package"
 $nugetOutput = & nuget pack "./Package.nuspec" -NoDefaultExcludes -OutputDirectory "$DistFolderPath" `
     -Properties "NoWarn=NU5110,NU5111;buildDir=`"$BuildFolderPath`"" 2>&1
 $nugetOutput | ForEach-Object {
-    if ($_ -match "Successfully created package '(.+\.nupkg)'") {
-        $nugetFilePath = $matches[1]
+    if ($_ -match "SpaceWarp\.Template\.[0-9\.]+\.nupkg") {
+        $nugetFileName = $matches[0]
         $destinationPath = "$DistFolderPath/SpaceWarp.Template.nupkg"
-        Copy-Item -Path $nugetFilePath -Destination $destinationPath -Force
+        Copy-Item -Path "$DistFolderPath/$nugetFileName" -Destination $destinationPath -Force
         Write-Host "Copied NuGet package to $destinationPath"
     }
 }
