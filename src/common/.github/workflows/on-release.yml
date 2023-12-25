@@ -1,0 +1,28 @@
+name: Upload release
+
+on:
+  release:
+    types: [ "published" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Build the solution
+        run: |
+          dotnet build "SpaceWarpTemplateName.sln" -c Release
+          echo "zip=$(ls -1 dist/SpaceWarpTemplateName-*.zip | head -n 1)" >> $GITHUB_ENV
+
+      - name: Upload Zip
+        uses: actions/upload-release-asset@v1.0.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.upload_url }}
+          asset_path: ${{ env.zip }}
+          asset_name: ${{ env.artifact_name }}
+          asset_content_type: application/zip
