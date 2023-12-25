@@ -124,8 +124,8 @@ There are multiple options how to generate a project using this template:
    over the corresponding "i" icons, or in the **[Project parameters](#project-parameters)** section.<br>
    **Make sure that "Place solution and project in the same directory" is checked.**
    ![Step 5](https://i.imgur.com/g5mkGSp.png)
-6. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process of
-   finishing the project setup.
+6. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process
+   of finishing the project setup.
 7. Rebuild the solution once for all references to be resolved  
    ![Step 8](https://i.imgur.com/MeBZBbD.png)
 
@@ -141,8 +141,8 @@ There are multiple options how to generate a project using this template:
 
    Replace `<project-type>` with one of the three project types listed in the **[Template types](#template-types)**
    section.
-3. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process of
-   finishing the project setup.
+3. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process
+   of finishing the project setup.
 
 ## Building a project
 
@@ -167,6 +167,7 @@ by simply double-clicking one of the configurations: `build-release.bat`, `build
 `build-run.bat`. Otherwise you can use your IDE or the .NET CLI to build the project.
 
 ### Building the UI project
+
 The **General mod project with UI** template includes a Unity project, which you can find in
 `YourMod/src/YourMod.Unity/YourMod.Unity`.
 
@@ -174,10 +175,31 @@ To build the asset bundle needed to display the UI, open the project with Unity,
 in the `Assets/UI` folder, and then go to the top menu and click on `Assets->Build AssetBundles`. This will build
 all asset bundles into the `Assets/AssetBundles` folder.
 
-Next, copy the built bundle (the default name of the file is `yourproject_ui.bundle`) to the folder 
+Next, copy the built bundle (the default name of the file is `yourproject_ui.bundle`) to the folder
 `YourMod/plugin_template/assets/bundles`. Now the C# project can be built as explained above.
 
 **Note:** You will need to repeat this process everytime you make changes to the UI files in Unity.
+
+### GitHub Actions
+
+The template includes GitHub Actions workflow files. They are located in the `.github/workflows` folder, and include
+the following:
+
+- **verify.yml** - Checks whether your swinfo.json file is valid and whether the `version_check` property
+  leads to a valid online swinfo.json file.
+
+  This workflow is triggered on every push to the **main** branch.
+- **build.yml** - Builds your mod and uploads artifacts with the results. This includes the built mod zip file,
+  and the built NuGet package if you are using the **Library mod project** template.
+
+  This workflow is triggered on every push to the **every** branch.
+- **release.yml** - Builds your mod in the Release configuration and uploads the resulting zip file to the release
+  that triggered the workflow. That means that you only need to create an "empty" release on GitHub, and the workflow 
+  will automatically build your mod and upload the zip as part of the release.
+
+  This workflow is triggered whenever you create and publish a **new release**.
+
+If you do not want to use any of these workflows, you can simply delete the corresponding files.
 
 ### swinfo.json
 

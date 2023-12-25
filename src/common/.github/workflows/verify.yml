@@ -1,7 +1,8 @@
-name: Verification
+name: Verify swinfo.json
 
 on:
   push:
+    branches: [ "main" ]
 
 jobs:
   verify:
@@ -13,6 +14,3 @@ jobs:
 
       - name: Verify KSP2 Mod
         uses: Rexicon226/VerifierAction@V0.5
-
-      - name: KSP2 Builder
-        uses: Rexicon226/KSP2Builder@V0.1

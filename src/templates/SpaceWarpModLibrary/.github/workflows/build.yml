@@ -1,0 +1,44 @@
+name: Build
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download NuGet
+        id: download-nuget
+        run: |
+          sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+      - name: Build the solution
+        run: dotnet build "SpaceWarpTemplateName.sln" -c Release
+
+      - name: Find zip
+        id: find-zip
+        run: |
+          echo "zip=$(ls -1 dist/SpaceWarpTemplateName-*.zip | head -n 1)" >> $GITHUB_ENV
+          echo "artifact_name=SpaceWarpTemplateNameRelease" >> $GITHUB_ENV
+
+      - name: Upload zip artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact_name }}
+          path: ${{ env.zip }}
+
+      - name: Find NuGet package
+        id: find-nupkg
+        run: |
+          echo "nupkg=$(ls -1 nuget/SpaceWarpTemplateName.*.nupkg | head -n 1)" >> $GITHUB_ENV
+          echo "artifact_name=SpaceWarpTemplateNameNuGet" >> $GITHUB_ENV
+
+      - name: Upload NuGet package
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.artifact_name }}
+          path: ${{ env.nupkg }}

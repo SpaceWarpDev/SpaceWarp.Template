@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - name: Check out repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Build the solution
@@ -17,7 +17,7 @@ jobs:
           dotnet build "SpaceWarpTemplateName.sln" -c Release
           echo "zip=$(ls -1 dist/SpaceWarpTemplateName-*.zip | head -n 1)" >> $GITHUB_ENV
 
-      - name: Upload Zip
+      - name: Upload zip to release
         uses: actions/upload-release-asset@v1.0.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
