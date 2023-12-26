@@ -8,11 +8,11 @@ _UpgradeReport_Files/
 /[Pp]ackages/
 
 # Mod template folders
-[Bb]uild/
-[Dd]ist/
-[Nn]uget/
-[Ee]xternal_dlls/*
-![Ee]xternal_dlls/PUT_EXTERNAL_DLLS_HERE
+/[Bb]uild/
+/[Dd]ist/
+/[Nn]uget/
+/plugin_template/addressables/**/*
+/plugin_template/assets/bundles/*.bundle
 
 # Rider
 
