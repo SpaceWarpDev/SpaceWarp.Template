@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-    <!-- Commands for Windows and Linux -->
     <!--/-:msbuild-conditional:noEmit -->
+    <!-- Commands for Windows and Linux -->
     <PropertyGroup>
         <NuGetExecutable Condition="'$(OS)' == 'Windows_NT'">nuget</NuGetExecutable>
         <NuGetExecutable Condition="'$(OS)' != 'Windows_NT'">mono /usr/local/bin/nuget.exe</NuGetExecutable>
