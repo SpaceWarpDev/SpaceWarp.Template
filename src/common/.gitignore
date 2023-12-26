@@ -11,8 +11,6 @@ _UpgradeReport_Files/
 /[Bb]uild/
 /[Dd]ist/
 /[Nn]uget/
-/plugin_template/addressables/**/*
-/plugin_template/assets/bundles/*.bundle
 
 # Rider
 
