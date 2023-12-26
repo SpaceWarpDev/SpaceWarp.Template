@@ -44,11 +44,14 @@ public class SpaceWarpModLibraryPlugin : BaseSpaceWarpPlugin
         var currentFolder = new FileInfo(Assembly.GetExecutingAssembly().Location).Directory!.FullName;
         Assembly.LoadFrom(Path.Combine(currentFolder, "SpaceWarpModLibrary.AnotherModule.dll"));
 
+        // Uncomment this to load 3rd party assemblies from the "lib" folder:
+        /*
         // Load any 3rd party assemblies from the "lib" folder
         var libFolder = Path.Combine(currentFolder, "lib");
         foreach (var file in Directory.GetFiles(libFolder, "*.dll"))
         {
             Assembly.LoadFrom(file);
         }
+        */
     }
 }
