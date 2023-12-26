@@ -56,7 +56,7 @@ dotnet new update
 
 ## Template types
 
-The template contains three different types of projects:
+The template contains various different types of projects:
 
 ### General mod project
 
