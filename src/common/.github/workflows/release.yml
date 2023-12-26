@@ -10,7 +10,7 @@ jobs:
     permissions: write-all
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install jq
         uses: dcarbone/install-jq-action@v2.1.0
