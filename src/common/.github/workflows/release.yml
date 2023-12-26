@@ -12,17 +12,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2.1.0
+
       - name: Build the solution
         run: |
+          version=$(jq -r '.version' plugin_template/swinfo.json)
+          echo "Version is $version"
           dotnet build "SpaceWarpTemplateName.sln" -c Release
+          echo "release_filename=SpaceWarpTemplateName-$version.zip" >> $GITHUB_ENV
           echo "zip=$(ls -1 dist/SpaceWarpTemplateName-*.zip | head -n 1)" >> $GITHUB_ENV
+          echo "upload_url=$(wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq '.[0].upload_url' | tr -d \")" >> $GITHUB_ENV
 
       - name: Upload zip to release
-        uses: actions/upload-release-asset@v1.0.1
+        uses: shogo82148/actions-upload-release-asset@v1.7.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ env.upload_url }}
           asset_path: ${{ env.zip }}
-          asset_name: ${{ env.artifact_name }}
+          asset_name: ${{ env.release_filename }}
           asset_content_type: application/zip
