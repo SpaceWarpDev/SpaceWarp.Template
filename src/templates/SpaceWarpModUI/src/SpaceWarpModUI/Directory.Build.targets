@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project>
     <!-- Commands for Windows and Linux -->
+    <!--/-:msbuild-conditional:noEmit -->
     <PropertyGroup>
         <PowerShellExecutable Condition="'$(OS)' == 'Windows_NT'">powershell</PowerShellExecutable>
         <PowerShellExecutable Condition="'$(OS)' != 'Windows_NT'">pwsh</PowerShellExecutable>
     </PropertyGroup>
+    <!--/+:msbuild-conditional:noEmit -->
 
     <!-- Post-build events target -->
     <Target Label="Post build events" Name="PostBuild" AfterTargets="PostBuildEvent">
