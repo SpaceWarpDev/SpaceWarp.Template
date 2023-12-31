@@ -207,6 +207,9 @@ The properties in your .csproj file are automatically read from the `swinfo.json
 `plugin_info` folder. This file is used by SpaceWarp mod to display information about your mod and check for updates
 of your mod.
 
+**This also applies to version information - you only need to update the version number of your mod in the `swinfo.json` file,
+and it will be automatically parsed from there for all uses.**
+
 Here is a list of properties in the `swinfo.json` file and their corresponding .csproj properties:
 
 | swinfo.json property | .csproj property  |
