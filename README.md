@@ -180,6 +180,10 @@ Next, copy the built bundle (the default name of the file is `yourproject_ui.bun
 
 **Note:** You will need to repeat this process everytime you make changes to the UI files in Unity.
 
+### Adding a new project to the solution
+When you add a new project to the solution, make sure to reference it from the main plugin project so that it gets
+included into the build.
+
 ### GitHub Actions
 
 The template includes GitHub Actions workflow files. They are located in the `.github/workflows` folder, and include
