@@ -173,9 +173,7 @@ The **General mod project with UI** template includes a Unity project, which you
 
 To build the asset bundle needed to display the UI, open the project with Unity, make any desired changes to the UI
 in the `Assets/UI` folder, and then go to the top menu and click on `Assets->Build AssetBundles`. This will build
-all asset bundles into the `Assets/AssetBundles` folder.
-
-Next, copy the built bundle (the default name of the file is `yourproject_ui.bundle`) to the folder
+all asset bundles into the `Assets/AssetBundles` folder, and should automatically copy all bundles to the folder
 `YourMod/plugin_template/assets/bundles`. Now the C# project can be built as explained above.
 
 **Note:** You will need to repeat this process everytime you make changes to the UI files in Unity.
