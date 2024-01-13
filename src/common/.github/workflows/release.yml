@@ -1,5 +1,8 @@
 name: Upload release
 
+env:
+  SPACEDOCK_MOD_ID: fill_in_your_mod_id_here
+
 on:
   release:
     types: [ "published" ]
@@ -14,20 +17,24 @@ jobs:
 
       - name: Download NuGet
         id: download-nuget
-        run: |
-          sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+        run: sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
 
       - name: Install jq
         uses: dcarbone/install-jq-action@v2.1.0
 
       - name: Build the solution
+        run: dotnet build "SpaceWarpTemplateName.sln" -c Release
+
+      - name: Extract current version
+        id: get-version
         run: |
           version=$(jq -r '.version' plugin_template/swinfo.json)
           echo "Version is $version"
-          dotnet build "SpaceWarpTemplateName.sln" -c Release
+          echo "version=$version" >> $GITHUB_ENV
           echo "release_filename=SpaceWarpTemplateName-$version.zip" >> $GITHUB_ENV
           echo "zip=$(ls -1 dist/SpaceWarpTemplateName-*.zip | head -n 1)" >> $GITHUB_ENV
           echo "upload_url=$(wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq '.[0].upload_url' | tr -d \")" >> $GITHUB_ENV
+          wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq -r '.[0].body' > ./changelog.md
 
       - name: Upload zip to release
         uses: shogo82148/actions-upload-release-asset@v1.7.2
@@ -38,3 +45,17 @@ jobs:
           asset_path: ${{ env.zip }}
           asset_name: ${{ env.release_filename }}
           asset_content_type: application/zip
+
+#      - name: Add Mask
+#        run: echo "::add-mask::${{ secrets.SPACEDOCK_PASSWORD }}"
+#
+#      - name: Update mod on SpaceDock
+#        uses: KSP2Community/spacedock-upload@v1.0.0
+#        with:
+#          username: ${{ secrets.SPACEDOCK_USER }}
+#          password: ${{ secrets.SPACEDOCK_PASSWORD }}
+#          game_id: 22407
+#          mod_id: ${{ env.SPACEDOCK_MOD_ID }}
+#          version: ${{ env.version }}
+#          zipball: ${{ env.zip }}
+#          changelog: ./changelog.md

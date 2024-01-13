@@ -134,7 +134,7 @@ There are multiple options how to generate a project using this template:
 1. Open `cmd` or `powershell` in the folder where you want your project created
 2. Replace the information in the following command with your own and run it:
    ```console
-   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/src/MyAwesomeModName/MyAwesomeModName.csproj"
+   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/plugin_template/swinfo.json"
    ```
    Typing `dotnet new <project-type> --help` will show you the possible parameters. You can find more information
    about all project parameters in the **[Project parameters](#project-parameters)** section.
@@ -179,6 +179,7 @@ all asset bundles into the `Assets/AssetBundles` folder, and should automaticall
 **Note:** You will need to repeat this process everytime you make changes to the UI files in Unity.
 
 ### Adding a new project to the solution
+
 When you add a new project to the solution, make sure to reference it from the main plugin project so that it gets
 included into the build.
 
@@ -201,6 +202,21 @@ the following:
 
   This workflow is triggered whenever you create and publish a **new release**.
 
+Included in the **release.yml** workflow is also a step which automatically uploads the new version of your mod to **SpaceDock**, but 
+it requires some additional setup:
+1. You mod needs to already have at least one release on SpaceDock.
+2. Open the `release.yml` file and uncomment the `Add Mask` and `Update mod on SpaceDock` steps.
+3. At the top of the `release.yml` file, update the `SPACEDOCK_MOD_ID` variable to the ID of your mod on SpaceDock.
+   You can find it in the URL of your mod, for example, if your mod's URL is `https://spacedock.info/mod/1234/MyMod`,
+   then the ID is `1234`.
+4. Go to your repository on GitHub, open the **Settings** tab, and under **Security**, open **Secrets and variables**
+   -> **Actions**. There, create two new repository secrets with the following names and values:
+   - `SPACEDOCK_USER` - your SpaceDock username
+   - `SPACEDOCK_PASSWORD` - your SpaceDock password
+   
+   This step is necessary so that your SpaceDock credentials can be used to upload the mod without being publicly
+   visible in your repository.
+
 If you do not want to use any of these workflows, you can simply delete the corresponding files.
 
 ### swinfo.json
@@ -209,8 +225,8 @@ The properties in your .csproj file are automatically read from the `swinfo.json
 `plugin_info` folder. This file is used by SpaceWarp mod to display information about your mod and check for updates
 of your mod.
 
-**This also applies to version information - you only need to update the version number of your mod in the `swinfo.json` file,
-and it will be automatically parsed from there for all uses.**
+**This also applies to version information - you only need to update the version number of your mod in the `swinfo.json`
+file, and it will be automatically parsed from there for all uses.**
 
 Here is a list of properties in the `swinfo.json` file and their corresponding .csproj properties:
 
@@ -245,5 +261,4 @@ They apply to all project types and you can find an overview of all of them and 
 &ast;The **License URL** parameter only applies to the **spacewarpmod-library** project type.
 
 None of the parameters other than **Project name** are required. If you don't provide any, the template will generate a
-project with the listed
-default values and you'll be able to fill them in later in your .csproj file.
+project with the listed default values and you'll be able to fill them in later in your .csproj file.
