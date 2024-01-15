@@ -1,0 +1,58 @@
+﻿name: Publish template release
+
+on:
+  release:
+    types: [ "published" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download NuGet
+        id: download-nuget
+        run: sudo curl -o /usr/local/bin/nuget.exe https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2.1.0
+
+      - name: Build template
+        id: build-template
+        run: pwsh -NoProfile -ExecutionPolicy Bypass -File "BuildPackage.ps1"
+
+      - name: Extract current version
+        id: get-version
+        run: |
+          filepath=$(ls -1 dist/SpaceWarp.Template.*.nupkg | head -n 1)
+          filename=$(basename $filepath)
+          echo "Release filename is $filename"
+          echo "release_filename=$filename" >> $GITHUB_ENV
+          echo "release_path=$filepath" >> $GITHUB_ENV
+          echo "upload_url=$(wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq '.[0].upload_url' | tr -d \")" >> $GITHUB_ENV
+          wget -qO- https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq -r '.[0].body' > ./changelog.md
+
+      - name: Upload zip to release
+        uses: shogo82148/actions-upload-release-asset@v1.7.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.upload_url }}
+          asset_path: ${{ env.release_path }}
+          asset_name: ${{ env.release_filename }}
+          asset_content_type: application/octet-stream
+
+      - name: Upload create-project.bat to release
+        uses: shogo82148/actions-upload-release-asset@v1.7.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ env.upload_url }}
+          asset_path: "create-project.bat"
+          asset_name: ${{ env.release_filename }}
+          asset_content_type: application/octet-stream
+
+      - name: Publish to nuget.org
+        run: dotnet nuget push ${{ env.release_path }} --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
