@@ -8,7 +8,7 @@ This project serves as a SpaceWarp mod project template for the .NET CLI and Vis
 
 ### Optional
 
-- **Visual Studio 2022** - Visual Studio 2022 is the required version if you want to use the template with it
+- **Visual Studio 2022** - Visual Studio 2022 is the required version if you want to use the template with VS
 - **JetBrains Rider** - The template can also be used with JetBrains Rider (tested with version 2023.3)
 - **Unity 2022.3.5f1** - Needed to build projects based on the **General mod project with UI** template
 
@@ -19,7 +19,15 @@ For .NET 7+ SDK, you can use the commands as they are written below.
 You can see the SDK version currently in use and all SDK versions
 installed by running `dotnet --info`.
 
-### A. NuGet.org
+### A. create-project.bat script
+
+The easiest way to install the template is to use the **create-project.bat** script. You can download the latest version
+from **[GitHub releases](https://github.com/SpaceWarpDev/SpaceWarp.Template/releases)**.
+
+When you run the script, it will check whether the template is installed and if not, it will install it for you.
+Similarly, it will also check for template updates and offer to install the update if a new version is available.
+
+### B. NuGet.org
 
 1. Run the following command in `cmd` or `powershell` to install all templates:
     ```console
@@ -30,7 +38,7 @@ installed by running `dotnet --info`.
     dotnet new install SpaceWarp.Template::<version>
     ```
 
-### B. Manual
+### C. Manual
 
 1. Download the .nupkg file from **[GitHub releases](https://github.com/jan-bures/SpaceWarp.Template/releases)**
 2. Run the following command in `cmd` or `powershell` in the directory with the downloaded file after
@@ -48,13 +56,16 @@ of the template which supports SpaceWarp 0.4.0.
 
 ## Updating
 
-To update the template to the latest version in .NET 7 SDK, run the following command:
+If you are using the `create-project.bat` script, it will automatically check for updates and offer to install them
+when a new version is available. _This feature is available since version 1.8.0.1 of the script._
+
+To update the template to the latest version manually, run the following command:
 
 ```console
-dotnet new update
+dotnet new install SpaceWarp.Template
 ```
 
-## Template types
+## Available templates
 
 The template contains various different types of projects:
 
@@ -104,7 +115,7 @@ This is the recommended template for modders who want to create a library mod wh
 
 There are multiple options how to generate a project using this template:
 
-### A. Project generator
+### A. Project generator (strongly recommended)
 
 1. Download the latest version of **create-project.bat** from
    **[GitHub releases](https://github.com/SpaceWarpDev/SpaceWarp.Template/releases)**
@@ -126,7 +137,7 @@ There are multiple options how to generate a project using this template:
    ![Step 5](https://i.imgur.com/g5mkGSp.png)
 6. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process
    of finishing the project setup.
-7. Rebuild the solution once for all references to be resolved  
+7. Rebuild the solution for all references to be resolved  
    ![Step 8](https://i.imgur.com/MeBZBbD.png)
 
 ### C. Manually with .NET CLI
@@ -139,7 +150,7 @@ There are multiple options how to generate a project using this template:
    Typing `dotnet new <project-type> --help` will show you the possible parameters. You can find more information
    about all project parameters in the **[Project parameters](#project-parameters)** section.
 
-   Replace `<project-type>` with one of the three project types listed in the **[Template types](#template-types)**
+   Replace `<project-type>` with one of the project types listed in the **[Template types](#template-types)**
    section.
 3. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process
    of finishing the project setup.
@@ -201,6 +212,8 @@ the following:
   will automatically build your mod and upload the zip as part of the release.
 
   This workflow is triggered whenever you create and publish a **new release**.
+
+#### SpaceDock integration
 
 Included in the **release.yml** workflow is also a step which automatically uploads the new version of your mod to **SpaceDock**, but 
 it requires some additional setup:
