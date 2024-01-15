@@ -1,5 +1,66 @@
 @echo off
 
+echo Checking if SpaceWarp.Template is installed...
+for /f "tokens=*" %%i in ('dotnet new --list ^| findstr /i "SpaceWarp"') do set template=%%i
+
+if not defined template (
+    echo SpaceWarp.Template is not installed.
+    choice /c yn /m "Do you want to install it?"
+    echo.
+    if errorlevel 2 goto end
+    echo Installing SpaceWarp.Template...
+    dotnet new install SpaceWarp.Template
+    goto update
+) else (
+    echo SpaceWarp.Template is installed.
+)
+
+echo Checking for updates...
+for /f "tokens=*" %%i in ('dotnet new update --check-only ^| findstr /i "SpaceWarp.Template"') do set update=%%i
+
+if defined update (
+    echo Updates are available for SpaceWarp.Template.
+    choice /c yn /m "Do you want to update it?"
+    echo.
+    if errorlevel 2 goto skipupdate
+    echo Updating SpaceWarp.Template...
+    dotnet new install SpaceWarp.Template
+    goto update
+) else (
+    echo No updates are available for SpaceWarp.Template.
+    goto skipupdate
+)
+
+:update
+
+cls
+
+(
+    echo @echo off
+    echo echo Updating the create-project.bat script...
+    echo timeout /t 1 /nobreak ^>nul
+    echo curl -s -L -o create-project-temp.bat https://raw.githubusercontent.com/SpaceWarpDev/SpaceWarp.Template/main/create-project.bat
+    echo if %%errorlevel%% neq 0 ^(
+    echo     echo Failed to download the script.
+    echo     pause
+    echo ^) else ^(
+    echo     echo The script has been updated to the latest version.
+    echo     echo Restarting the script...
+    echo     move /y create-project-temp.bat create-project.bat ^> NUL
+    echo     cls
+    echo     start "" create-project.bat ^> NUL
+    echo     del /f /q update-create-project.bat ^> NUL
+    echo ^)
+) > update-create-project.bat
+
+echo Starting the update script...
+start "" update-create-project.bat
+exit /b
+
+:skipupdate
+
+cls
+
 echo This script will create a new SpaceWarp mod project.
 echo.
 echo Choose the template you want to use:

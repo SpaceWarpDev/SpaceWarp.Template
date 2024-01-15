@@ -1,4 +1,4 @@
 @echo off
 echo Running BuildPackage PowerShell script...
 
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "BuildPackage.ps1"
+pwsh -NoProfile -ExecutionPolicy Bypass -File "BuildPackage.ps1"

@@ -8,7 +8,7 @@ This project serves as a SpaceWarp mod project template for the .NET CLI and Vis
 
 ### Optional
 
-- **Visual Studio 2022** - Visual Studio 2022 is the required version if you want to use the template with it
+- **Visual Studio 2022** - Visual Studio 2022 is the required version if you want to use the template with VS
 - **JetBrains Rider** - The template can also be used with JetBrains Rider (tested with version 2023.3)
 - **Unity 2022.3.5f1** - Needed to build projects based on the **General mod project with UI** template
 
@@ -19,7 +19,15 @@ For .NET 7+ SDK, you can use the commands as they are written below.
 You can see the SDK version currently in use and all SDK versions
 installed by running `dotnet --info`.
 
-### A. NuGet.org
+### A. create-project.bat script
+
+The easiest way to install the template is to use the **create-project.bat** script. You can download the latest version
+from **[GitHub releases](https://github.com/SpaceWarpDev/SpaceWarp.Template/releases)**.
+
+When you run the script, it will check whether the template is installed and if not, it will install it for you.
+Similarly, it will also check for template updates and offer to install the update if a new version is available.
+
+### B. NuGet.org
 
 1. Run the following command in `cmd` or `powershell` to install all templates:
     ```console
@@ -30,7 +38,7 @@ installed by running `dotnet --info`.
     dotnet new install SpaceWarp.Template::<version>
     ```
 
-### B. Manual
+### C. Manual
 
 1. Download the .nupkg file from **[GitHub releases](https://github.com/jan-bures/SpaceWarp.Template/releases)**
 2. Run the following command in `cmd` or `powershell` in the directory with the downloaded file after
@@ -48,13 +56,16 @@ of the template which supports SpaceWarp 0.4.0.
 
 ## Updating
 
-To update the template to the latest version in .NET 7 SDK, run the following command:
+If you are using the `create-project.bat` script, it will automatically check for updates and offer to install them
+when a new version is available. _This feature is available since version 1.8.0.1 of the script._
+
+To update the template to the latest version manually, run the following command:
 
 ```console
-dotnet new update
+dotnet new install SpaceWarp.Template
 ```
 
-## Template types
+## Available templates
 
 The template contains various different types of projects:
 
@@ -104,7 +115,7 @@ This is the recommended template for modders who want to create a library mod wh
 
 There are multiple options how to generate a project using this template:
 
-### A. Project generator
+### A. Project generator (strongly recommended)
 
 1. Download the latest version of **create-project.bat** from
    **[GitHub releases](https://github.com/SpaceWarpDev/SpaceWarp.Template/releases)**
@@ -126,7 +137,7 @@ There are multiple options how to generate a project using this template:
    ![Step 5](https://i.imgur.com/g5mkGSp.png)
 6. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process
    of finishing the project setup.
-7. Rebuild the solution once for all references to be resolved  
+7. Rebuild the solution for all references to be resolved  
    ![Step 8](https://i.imgur.com/MeBZBbD.png)
 
 ### C. Manually with .NET CLI
@@ -134,12 +145,12 @@ There are multiple options how to generate a project using this template:
 1. Open `cmd` or `powershell` in the folder where you want your project created
 2. Replace the information in the following command with your own and run it:
    ```console
-   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/src/MyAwesomeModName/MyAwesomeModName.csproj"
+   dotnet new <project-type> -n MyAwesomeModName -A "munix" -M "My Awesome Mod Name" -D "This is the description of my awesome mod." -S "https://github.com/munix/MyAwesomeModName" -V "1.0.0" -C "https://raw.githubusercontent.com/munix/MyAwesomeModName/main/plugin_template/swinfo.json"
    ```
    Typing `dotnet new <project-type> --help` will show you the possible parameters. You can find more information
    about all project parameters in the **[Project parameters](#project-parameters)** section.
 
-   Replace `<project-type>` with one of the three project types listed in the **[Template types](#template-types)**
+   Replace `<project-type>` with one of the project types listed in the **[Template types](#template-types)**
    section.
 3. Open the project directory, go to the `scripts` folder and run `setup.bat`. This will guide you through the process
    of finishing the project setup.
@@ -179,6 +190,7 @@ all asset bundles into the `Assets/AssetBundles` folder, and should automaticall
 **Note:** You will need to repeat this process everytime you make changes to the UI files in Unity.
 
 ### Adding a new project to the solution
+
 When you add a new project to the solution, make sure to reference it from the main plugin project so that it gets
 included into the build.
 
@@ -201,6 +213,23 @@ the following:
 
   This workflow is triggered whenever you create and publish a **new release**.
 
+#### SpaceDock integration
+
+Included in the **release.yml** workflow is also a step which automatically uploads the new version of your mod to **SpaceDock**, but 
+it requires some additional setup:
+1. You mod needs to already have at least one release on SpaceDock.
+2. Open the `release.yml` file and uncomment the `Add Mask` and `Update mod on SpaceDock` steps.
+3. At the top of the `release.yml` file, update the `SPACEDOCK_MOD_ID` variable to the ID of your mod on SpaceDock.
+   You can find it in the URL of your mod, for example, if your mod's URL is `https://spacedock.info/mod/1234/MyMod`,
+   then the ID is `1234`.
+4. Go to your repository on GitHub, open the **Settings** tab, and under **Security**, open **Secrets and variables**
+   -> **Actions**. There, create two new repository secrets with the following names and values:
+   - `SPACEDOCK_USER` - your SpaceDock username
+   - `SPACEDOCK_PASSWORD` - your SpaceDock password
+   
+   This step is necessary so that your SpaceDock credentials can be used to upload the mod without being publicly
+   visible in your repository.
+
 If you do not want to use any of these workflows, you can simply delete the corresponding files.
 
 ### swinfo.json
@@ -209,8 +238,8 @@ The properties in your .csproj file are automatically read from the `swinfo.json
 `plugin_info` folder. This file is used by SpaceWarp mod to display information about your mod and check for updates
 of your mod.
 
-**This also applies to version information - you only need to update the version number of your mod in the `swinfo.json` file,
-and it will be automatically parsed from there for all uses.**
+**This also applies to version information - you only need to update the version number of your mod in the `swinfo.json`
+file, and it will be automatically parsed from there for all uses.**
 
 Here is a list of properties in the `swinfo.json` file and their corresponding .csproj properties:
 
@@ -245,5 +274,4 @@ They apply to all project types and you can find an overview of all of them and 
 &ast;The **License URL** parameter only applies to the **spacewarpmod-library** project type.
 
 None of the parameters other than **Project name** are required. If you don't provide any, the template will generate a
-project with the listed
-default values and you'll be able to fill them in later in your .csproj file.
+project with the listed default values and you'll be able to fill them in later in your .csproj file.
