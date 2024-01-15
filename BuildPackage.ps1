@@ -64,7 +64,7 @@ Write-Host "Packing NuGet package"
 if ($IsWindows) {
     $nugetCommand = "nuget"
 } else {
-    $nugetCommand = "mono /usr/local/bin/nuget.exe"
+    $nugetCommand = "mono", "/usr/local/bin/nuget.exe"
 }
 $nugetOutput = & $nugetCommand pack "./Package.nuspec" -NoDefaultExcludes -OutputDirectory "$DistFolderPath" `
     -Properties "NoWarn=NU5110,NU5111;buildDir=$BuildFolderPath" 2>&1
