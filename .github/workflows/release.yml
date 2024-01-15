@@ -50,8 +50,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ env.upload_url }}
-          asset_path: "create-project.bat"
-          asset_name: ${{ env.release_filename }}
+          asset_path: create-project.bat
+          asset_name: create-project.bat
           asset_content_type: application/octet-stream
 
       - name: Publish to nuget.org
