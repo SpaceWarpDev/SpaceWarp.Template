@@ -22,18 +22,7 @@ if %errorlevel% == 3 goto later
 call powershell.exe -ExecutionPolicy RemoteSigned -File "scripts\setup\ksp2_finder.ps1"
 if %errorlevel% == 0 (
     echo.
-    echo KSP 2 installation found at %KSP2DIR%.
-    echo Do you want to keep this path?
-    echo 1. Yes, keep this path
-    echo 2. No, I want to set the path manually
-    echo.
-    choice /c 12 /n /m "Choice [1-2]: "
-    
-    if %errorlevel% == 0 goto find_error
-    if errorlevel 3 goto find_error
-
-    if %errorlevel% == 1 goto confirm
-    if %errorlevel% == 2 goto manual
+    goto end
 )
 
 echo KSP 2 not found, do you want to enter the path manually?

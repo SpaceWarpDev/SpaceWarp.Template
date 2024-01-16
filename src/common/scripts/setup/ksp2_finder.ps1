@@ -21,9 +21,12 @@ $gameFolder = 'steamapps\common\Kerbal Space Program 2'
 foreach ($path in $paths) {
     $gamePath = Join-Path $path $gameFolder
     if (Test-Path $gamePath -PathType Container) {
-        [System.Environment]::SetEnvironmentVariable('KSP2DIR', $gamePath, 'User')
-        Write-Output "KSP2DIR environment variable set to $gamePath."
-        exit 0
+        $userChoice = Read-Host -Prompt "KSP2 found at $gamePath. Do you want to use this path? [Y/N]"
+        if ($userChoice -eq 'y' -or $userChoice -eq 'Y') {
+            [System.Environment]::SetEnvironmentVariable('KSP2DIR', $gamePath, 'User')
+            Write-Output "KSP2DIR environment variable set to $gamePath."
+            exit 0
+        }
     }
 }
 
