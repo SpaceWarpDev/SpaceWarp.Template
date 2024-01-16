@@ -69,7 +69,7 @@
             "parameters": {
                 "format": "yyyy"
             },
-            "replaces": "2023"
+            "replaces": "202X"
         }
     }
 }
