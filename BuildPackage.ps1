@@ -51,6 +51,12 @@ Get-ChildItem -Path "$BuildFolderPath/templates" -Directory | ForEach-Object {
     $currentTemplateName = $_.Name
     $Replacements["SpaceWarpTemplateName"] = $currentTemplateName
 
+    # Log the entire Replacement dictionary
+    Write-Host "Replacements for template $currentTemplateName"
+    $Replacements.GetEnumerator() | ForEach-Object {
+        Write-Host "  $($_.Key) = $($_.Value)"
+    }
+
     Get-ChildItem -Path $_.FullName -Recurse -File | ForEach-Object {
         if ($skipExtensions -contains $_.Extension) {
             Write-Host "Skipped binary file ""$($_.Name)"""
