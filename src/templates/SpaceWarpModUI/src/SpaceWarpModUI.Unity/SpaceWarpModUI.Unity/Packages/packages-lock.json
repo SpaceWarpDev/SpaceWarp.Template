@@ -89,11 +89,11 @@
       "url": "https://packages.unity.com"
     },
     "uitkforksp2.controls": {
-      "version": "https://github.com/UitkForKsp2/UitkForKsp2.Controls.git",
+      "version": "https://github.com/UitkForKsp2/UitkForKsp2.Unity.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "fdc0ae58680234cda7786910e9dfa80c2de05530"
+      "hash": "182e6c631c63b37d7f1ac3b760b93bb859891436"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
