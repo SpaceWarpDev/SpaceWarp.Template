@@ -45,18 +45,24 @@ Get-ChildItem -Path "$BuildFolderPath/templates" -Directory | ForEach-Object {
     Copy-Item -Path "$SrcFolderPath/common/*" -Destination $_.FullName -Recurse -Force
 }
 
+$skipExtensions = @(".jpg", ".jpeg", ".png", ".gif", ".bmp")
+
 Get-ChildItem -Path "$BuildFolderPath/templates" -Directory | ForEach-Object {
     $currentTemplateName = $_.Name
     $Replacements["SpaceWarpTemplateName"] = $currentTemplateName
 
     Get-ChildItem -Path $_.FullName -Recurse -File | ForEach-Object {
-        $fileContent = Get-Content $_.FullName -Raw
+        if ($skipExtensions -contains $_.Extension) {
+            Write-Host "Skipped binary file ""$($_.Name)"""
+        } else {
+            $fileContent = Get-Content $_.FullName -Raw
 
-        foreach ($replacement in $Replacements.Keys) {
-            $fileContent = $fileContent -replace $replacement, $Replacements[$replacement]
+            foreach ($replacement in $Replacements.Keys) {
+                $fileContent = $fileContent -replace $replacement, $Replacements[$replacement]
+            }
+
+            Set-Content -Path $_.FullName -Value $fileContent
         }
-
-        Set-Content -Path $_.FullName -Value $fileContent
     }
 }
 
