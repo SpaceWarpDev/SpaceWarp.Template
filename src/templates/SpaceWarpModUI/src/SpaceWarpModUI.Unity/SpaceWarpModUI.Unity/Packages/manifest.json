@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.feature.development": "1.0.1",
-    "uitkforksp2.controls": "https://github.com/UitkForKsp2/UitkForKsp2.Controls.git",
+    "uitkforksp2.controls": "https://github.com/UitkForKsp2/UitkForKsp2.Unity.git",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
