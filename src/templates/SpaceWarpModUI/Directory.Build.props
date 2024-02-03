@@ -25,12 +25,6 @@
         <NoWarn>$(NoWarn);CS0436</NoWarn>
     </PropertyGroup>
 
-    <PropertyGroup Label="Package source configuration">
-        <RestoreAdditionalProjectSources>
-            https://nuget.spacewarp.org/v3/index.json
-        </RestoreAdditionalProjectSources>
-    </PropertyGroup>
-
     <ItemGroup Label="Dependencies for build targets">
         <PackageReference Include="JsonPeek" Version="1.2.0" PrivateAssets="all"/>
     </ItemGroup>
