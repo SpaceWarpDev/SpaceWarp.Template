@@ -1,4 +1,4 @@
-name: Publish template release
+name: Build template
 
 on:
   push

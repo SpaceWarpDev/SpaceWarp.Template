@@ -1,0 +1,23 @@
+{
+  "spec": "SpaceWarpSpecVersion",
+  "mod_id": "SpaceWarpTemplateName",
+  "author": "swinfo_author",
+  "name": "swinfo_name",
+  "description": "swinfo_description",
+  "source": "swinfo_source",
+  "version": "swinfo_version",
+  "version_check": "swinfo_checkversion",
+  "ksp2_version": {
+    "min": "KspMinVersion",
+    "max": "*"
+  },
+  "dependencies": [
+    {
+      "id": "com.github.x606.spacewarp",
+      "version": {
+        "min": "SpaceWarpMinVersion",
+        "max": "*"
+      }
+    }
+  ]
+}
