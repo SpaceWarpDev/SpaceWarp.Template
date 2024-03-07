@@ -2,6 +2,12 @@ name: Upload release
 
 env:
   SPACEDOCK_MOD_ID: fill_in_your_mod_id_here
+  SPACEDOCK_MOD_URL: "https://spacedock.info/mod/..." # The URL of your mod on SpaceDock" 
+  FORUM_TOPIC_URL: "https://forum.kerbalspaceprogram.com/topic/..." # The URL of your mod's forum topic
+  FORUM_TOPIC_TITLE: "My Mod [v{version} for KSP2 v{ksp2_version}]" # The title of your mod's forum topic
+  DISCORD_MOD_THREAD_ID: "1234..." # The thread ID of the mod's Discord post
+  DISCORD_USERNAME: "My Mod" # The username of the bot that will post to Discord
+  DISCORD_AVATAR_URL: ".." # The Image URL of the bot's avatar. Not required.
 
 on:
   release:
@@ -61,3 +67,39 @@ jobs:
 #          version: ${{ env.version }}
 #          zipball: ${{ env.zip }}
 #          changelog: ./changelog.md
+
+
+      # KSP Forum topic update (both title and new post in the thread)
+      # You need the secrets "KSP_FORUM_USERNAME" and "KSP_FORUM_PASSWORD" for this to work.
+      # - name: Update Forum topic
+      #   uses: Kerbalight/ksp2-forum-post-action@latest
+      #   with:
+      #     username: ${{ secrets.KSP_FORUM_USERNAME }}
+      #     password: ${{ secrets.KSP_FORUM_PASSWORD }}
+      #     forum_topic_url: ${{ env.FORUM_TOPIC_URL }}
+      #     forum_topic_title: ${{ env.FORUM_TOPIC_TITLE }}
+      #     spacedock_url: ${{ env.SPACEDOCK_MOD_URL}}
+      #     version: ${{ env.version }}
+      #     changelog: ./changelog.md
+
+
+      # Discord update. You need the secret "DISCORD_KMS_WEBHOOK_URL" for this to work. Ask in Discord for this.
+      # - name: Prepare message for Discord
+      #   shell: bash
+      #   run: |
+      #     echo -e "## Release v${version}\n" > ./content.md
+      #     cat ./changelog.md >> ./content.md
+      #     {
+      #       echo 'discord_message<<EOF'
+      #       cat ./content.md
+      #       echo EOF
+      #     } >> "$GITHUB_ENV"
+
+      # - name: Publish update to Discord
+      #   uses: tsickert/discord-webhook@v5.3.0
+      #   with:
+      #     webhook-url: ${{ secrets.DISCORD_KMS_WEBHOOK_URL }}
+      #     content: ${{ env.discord_message }}
+      #     thread-id: ${{ env.DISCORD_MOD_THREAD_ID }}
+      #     username: ${{ env.DISCORD_USERNAME }}
+      #     avatar-url: ${{ env.DISCORD_AVATAR_URL }}
