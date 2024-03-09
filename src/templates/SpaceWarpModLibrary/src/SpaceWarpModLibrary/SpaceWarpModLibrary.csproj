@@ -21,7 +21,7 @@
     </ItemGroup>
     <!-- Use Assembly-CSharp from the game as a reference locally to enable debugging in Deploy and DeployAndRun -->
     <ItemGroup Condition="$(ConfigurationName) != 'Release'">
-        <Reference Include="Assembly-CSharp">
+        <Reference Include="Assembly-CSharp" PrivateAssets="all" Publicize="true">
             <HintPath>$(KSP2DIR)\KSP2_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
     </ItemGroup>
